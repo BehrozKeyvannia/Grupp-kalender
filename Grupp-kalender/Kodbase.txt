@@ -1,0 +1,43 @@
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import lambert1.game.Game;
+
+public class Menu extends JFrame implements ActionListener {
+    /*
+     * @Author  Rami Jabor
+     */
+
+    private JPanel pan = new JPanel();
+
+    public Menu() {
+        /**
+         * @param lolol
+         */
+        setTitle("Meny");
+        pan.setLayout(new FlowLayout()); //ANNAN LAYOUT
+
+        Container c = getContentPane();
+        c.add(pan, BorderLayout.SOUTH);
+
+        pack();
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+       if (e.getSource() == ) { //newGame
+           
+
+    }
+
+    public static void main(String[] arg) {
+        Menu s = new Menu();
+    }
+}
