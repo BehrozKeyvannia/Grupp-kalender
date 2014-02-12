@@ -73,7 +73,6 @@ public void setTitle(String newTitle)
     {
        return date;
     }
-
     public String getStartTime()
     {
        return startTime;
@@ -82,6 +81,10 @@ public void setTitle(String newTitle)
     public String getEndTime()
     {
        return endTime;
+    }
+    public String getHTMLString(){
+    	
+    	return "<html> "+ startTime+ "  " + endTime+"<br /> "+title+ "<br /> "+userName+"</html>";
     }
 
 }

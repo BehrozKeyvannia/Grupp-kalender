@@ -1,6 +1,6 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
 * Manage the events
@@ -24,19 +24,47 @@ public class EventManager
     }
    
     /**
+     * Creates and returns a Event with the specified info
+     */
+    public Event createEvent(String userName, String title, String date, String startTime, String endTime){
+    	eventID++;
+    	return new Event(eventID, userName, title, date, startTime, endTime);	
+    }
+    /**
     * Adds an event to a user's Eventlist
     * @param event, the event that will be added
     */
-    public Event createEvent(String userName, String title, String date, String startTime, String endTime){
-    	return new Event(eventID, userName, title, date, startTime, endTime);	
-    }
     public void addEvent(Event event)
     {
        hMap.put(event.getUserName(),eventList);
        hMap.get(event.getUserName()).add(event);
     }
- /*   public Event getEvent(String user,int id){
+    
+    /**
+     * 
+     * @param user Vilken användares lista som kmr sökas
+     * @param id Eventets ID
+     * @return Eventet som söks
+     */
+    public Event getEvent(String user,int id){
     	
-    }*/
-
+    	LinkedList<Event> temp = hMap.get(user);
+    	Event tempEvent;
+    	
+    	//Gå igenom användares lista o hitta rätt event id
+    	Iterator<Event> tempIterator = temp.iterator();
+    	 while (tempIterator.hasNext()) 
+         {
+    		 tempEvent=tempIterator.next();
+             if(tempEvent.getID()==id)   
+            	 return tempEvent;
+         }
+    	 //Om inget event hittas returnas null
+    	return null;
+    }
+    
+    public int geteventID(){
+    	return eventID;
+    }
+    
 }
