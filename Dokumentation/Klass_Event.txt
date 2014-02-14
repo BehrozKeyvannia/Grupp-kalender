@@ -3,7 +3,9 @@ KLASS: Event
 
 Beskrivning:
 
-Klassen Event representerar en aktivitet som ska lŠggas till i Grupp-kalendern. Event tar all information om aktiviteten sŒ som anvŠndarnamn, titel, start och sluttid och datum. Klassen kommer att hanteras enbart av eventManager.
+Klassen Event representerar en aktivitet som ska lï¿½ggas till i Grupp-kalendern. 
+Event tar all information om aktiviteten sï¿½ som anvï¿½ndarnamn, titel, start och sluttid och datum. 
+Klassen kommer att hanteras enbart av eventManager.
 
 
 
