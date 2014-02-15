@@ -1,4 +1,4 @@
-KLASS: Event 
+﻿KLASS: Event 
 
 
 Beskrivning:
@@ -11,12 +11,16 @@ Klassen kommer att hanteras enbart av eventManager.
 
 Instansvariablerna:
 
-   public final int ID;
-   public String userName;
-   public String title;
-   public String date;
-   public String startTime;
-   public String endTime;
+   private final int ID;
+   private String userName;
+   private String title;
+   private String date;
+   private int weekDay;
+   private String startTime;
+   private String endTime;
+
+Konstruktor:
+
 
 Metoder (getters): 
 
@@ -43,6 +47,16 @@ Metoder (setters) :
     public void setStartTime(String newStartTime)
 
     public void setEndTime(String newStartTime)
+
+Övriga metoder:
+
+    public String getHTMLString()
+	Returnerar en string som är HTML specieferad för Swingklasser
+
+    public void setWeekday()
+	Tar reda på vilken veckodag eventet är baserat på det existerande datumet(om inget datum finns så händer inget) och nummrerar variabeln weekDay med Mån = 1
+Tis = 2 Ons = 3 o.s.v.
+
 
    
     

@@ -1,0 +1,5 @@
+FileHandler
+Har hand om sparningen av events i textfiler och hämtningen av sparade events i textfiler.
+
+Kolla i Förläsning 7s exempel Adressbook för vidare hänvisning.
+
