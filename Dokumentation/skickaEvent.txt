@@ -22,6 +22,6 @@ Klassen har hand om kommunikationen mellan olika portar. Klassen ska kunna  ta e
 - sendEvents : Event\
 \
 
-\b Metoder: 
+\b //Metoder: 
 \b0 \
 }
