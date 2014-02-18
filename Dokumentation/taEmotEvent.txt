@@ -14,7 +14,7 @@ Instansvariabler:
 
 Metoder: 
 
-+ sendEvent() : void
++ taEmotEvent() : void
 Vad mer behövs?
 
 
