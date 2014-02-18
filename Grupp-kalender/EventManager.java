@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import javax.swing.*;
 
 /**
 * Manage the events
@@ -9,7 +8,7 @@ import javax.swing.*;
 * @author (Ashor, Akar och Ali)
 * @version whogivesashit?
 */
-public class EventManager extends JButton
+public class EventManager
 {
     private HashMap<String, LinkedList<Event>> hMap;
     private LinkedList<Event> eventList;
@@ -31,7 +30,6 @@ public class EventManager extends JButton
     	eventID++;
     	return new Event(eventID, userName, title, date, startTime, endTime);	
     }
-    
     /**
     * Adds an event to a user's Eventlist
     * @param event, the event that will be added
@@ -68,4 +66,5 @@ public class EventManager extends JButton
     public int geteventID(){
     	return eventID;
     }
+    
 }

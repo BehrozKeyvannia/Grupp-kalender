@@ -11,9 +11,6 @@ public class GUI extends JFrame implements ActionListener {
     /*
      * @Author
      */
-	 public static void main(String[] arg) {
-		 new GUI();
-	 }
 
     //Create the menu bar.
     private JMenuItem menuItem = new JMenuItem("Create new eventuuu!");
@@ -58,7 +55,6 @@ public class GUI extends JFrame implements ActionListener {
         pack();
         setVisible(true);
     }
-    
     /**
      * Om nåt klickas
      */
@@ -68,8 +64,7 @@ public class GUI extends JFrame implements ActionListener {
         else{
             for(int index=0;index<i;index++){
                 if (e.getSource() == b[index]){
-                	EventManager temp = (EventManager) e.getSource();
-                	temp.geteventID();
+                	
                 	//Har ett problem här! Behöver assiocera knappen till ett event så jag kan ta själva eventets variabler istället för knappens text 
                 	//Antingen så kan man ta knappens text, hämta infot därifrån genom att separerare HTML koden och sen leta upp eventet i Hashmappen hMap 
                 	//Eller så kan eventID och användaren sparas på nåt annat sätt i själva JButtonen. Vet inte hur
@@ -81,7 +76,6 @@ public class GUI extends JFrame implements ActionListener {
             }
         }
     }
-    
     /**
      * Skapar nytt fönster med alla inmatningsrutor för ett nytt event
      * 
@@ -93,7 +87,7 @@ public class GUI extends JFrame implements ActionListener {
         JTextField userField = new JTextField(5);
         
         /**
-         * L��gger alla JLabels och inmatningsrutor i f��nstert
+         * Lägger alla JLabels och inmatningsrutor i fönstert
          * */
         JPanel myPanel = new JPanel();
         myPanel.add(new JLabel("StartTime:  "));
@@ -120,10 +114,9 @@ public class GUI extends JFrame implements ActionListener {
         	 */
         }
     }
-    
     /**
-     * Metod som tar in ett Event och skapar en aktivt lyssnade JButton p�� f��nster med Eventets info
-     * Vet inte varf��r jag har dem i en array ��n men kan vara anv��ndbart
+     * Metod som tar in ett Event och skapar en aktivt lyssnade JButton på fönster med Eventets info
+     * Vet inte varför jag har dem i en array än men kan vara användbart
      * */
     public void newEventJButton(Event DasEvent){
         b[i] = new JButton();
@@ -131,5 +124,9 @@ public class GUI extends JFrame implements ActionListener {
         b[i].addActionListener(this);
         pan.add(b[i++]);
         pack();
+    }
+
+    public static void main(String[] arg) {
+        new GUI();
     }
 }
