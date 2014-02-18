@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>360</x>
+      <y>304</y>
+      <w>224</w>
+      <h>296</h>
+    </coordinates>
+    <panel_attributes>Event
+--
+-int: final id
+-String[]: userNames
+-String: title
+-String: date 
+-int: weekDay
+-String: startTime
+-String: endTime
+--
++getID(): int
++getUsers: String[]
++getTitle: String
++getDate: String
++getWeekDay: String
++getStartTime: String
++getEndTime: String
++setTitle(String: newTitle): void
++setDate(String: newDate): void
++setStartTime(String: newStartTime): void
++setEndTime(String: newEndTime): void
++getHtmlString(): void
++setWeekday(): void
++addUser(String): void
+
+fg=black
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>208</x>
+      <y>104</y>
+      <w>536</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;MAIN?&gt;&gt;
+EventManager
+--
+-Hashmap(String, Linkedlist&lt;Event&gt;): hMap
+-Linkedlist&lt;Event&gt;: eventlist
+-int: eventId
+--
++createEvent(int: id, String: userName, String: title, String: date, String: startTime, String: endTime): Event
++addEvent(Event: e): void
++getEvent(String: user, int: id): Even
++getEventById(int: id): Event
++removeUser(String: user): void
++removeEvent(int: id): void
+
+
+
+
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>440</x>
+      <y>232</y>
+      <w>60</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+   *
+fg=black</panel_attributes>
+    <additional_attributes>32;24;32;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>8</x>
+      <y>88</y>
+      <w>168</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>GUI
+--
+fg=black
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>840</x>
+      <y>104</y>
+      <w>168</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>EventFileManager
+--
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>8</x>
+      <y>384</y>
+      <w>168</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Kommunikation
+--
+fg=black
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>8</x>
+      <y>328</y>
+      <w>168</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Trådar
+--
+fg=black
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>64</x>
+      <y>24</y>
+      <w>424</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+Äger???</panel_attributes>
+    <additional_attributes>408;80;408;40;24;40;24;64</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>544</x>
+      <y>24</y>
+      <w>400</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+EventFileManager beroende av EventManager???</panel_attributes>
+    <additional_attributes>24;80;24;40;384;40;384;80</additional_attributes>
+  </element>
+</diagram>
