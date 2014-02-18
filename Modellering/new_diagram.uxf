@@ -4,10 +4,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>360</x>
-      <y>304</y>
+      <x>384</x>
+      <y>312</y>
       <w>224</w>
-      <h>296</h>
+      <h>304</h>
     </coordinates>
     <panel_attributes>Event
 --
@@ -20,12 +20,12 @@
 -String: endTime
 --
 +getID(): int
-+getUsers: String[]
-+getTitle: String
-+getDate: String
-+getWeekDay: String
-+getStartTime: String
-+getEndTime: String
++getUsers(): String[]
++getTitle(): String
++getDate(): String
++getWeekDay(): String
++getStartTime(): String
++getEndTime(): String
 +setTitle(String: newTitle): void
 +setDate(String: newDate): void
 +setStartTime(String: newStartTime): void
@@ -41,10 +41,10 @@ bg=light_gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>208</x>
-      <y>104</y>
-      <w>536</w>
-      <h>152</h>
+      <x>232</x>
+      <y>64</y>
+      <w>544</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>&lt;&lt;MAIN?&gt;&gt;
 EventManager
@@ -71,40 +71,60 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>440</x>
-      <y>232</y>
+      <x>464</x>
+      <y>200</y>
       <w>60</w>
-      <h>88</h>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
+   
+   
    *
 fg=black</panel_attributes>
-    <additional_attributes>32;24;32;72</additional_attributes>
+    <additional_attributes>32;24;32;112</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>8</x>
-      <y>88</y>
-      <w>168</w>
-      <h>40</h>
+      <y>16</y>
+      <w>144</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>GUI
 --
-fg=black
-bg=light_gray</panel_attributes>
+-JMenuItem: menuItem
+-JMenuBar: menuBar
+-JPanel: pan
+-EventManager: mang
+--
++newEventWindow(): void
++controlInput(): boolean
++newEvent(Event: e): void
+
+
+bg=pink
+fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>840</x>
-      <y>104</y>
-      <w>168</w>
-      <h>40</h>
+      <y>288</y>
+      <w>160</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>EventFileManager
 --
+-String: line
+-BufferedReader: reader
+-FileWriter: writer
+-EventManager: mgr
+--
++writeFile(Event: event): void
++readFile(): void
+
 bg=light_gray
 fg=black</panel_attributes>
     <additional_attributes/>
@@ -112,53 +132,81 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>8</x>
+      <x>40</x>
       <y>384</y>
-      <w>168</w>
-      <h>40</h>
+      <w>176</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>Kommunikation
+    <panel_attributes>SkickaEvent
 --
-fg=black
-bg=light_gray</panel_attributes>
+-DatagramSocket: socket
+-final static int: port
+-recieveEvents: Event
+-Event: sendEvent
+--
++recieveEvent(): void
+
+
+bg=light_gray
+fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>8</x>
-      <y>328</y>
-      <w>168</w>
-      <h>40</h>
+      <x>40</x>
+      <y>488</y>
+      <w>176</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>TaEmotEvent
+--
+-DatagramSocket: taEmotSocket
+-final static int: port
+-DatagramPacket: packet
+-InetAddress: iadr
+--
++sendEvent(): void
+
+bg=light_gray
+fg=black
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>840</x>
+      <y>440</y>
+      <w>160</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>Trådar
 --
-fg=black
-bg=light_gray</panel_attributes>
+bg=light_gray
+fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>64</x>
-      <y>24</y>
-      <w>424</w>
-      <h>96</h>
+      <x>128</x>
+      <y>0</y>
+      <w>400</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-Äger???</panel_attributes>
-    <additional_attributes>408;80;408;40;24;40;24;64</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>384;64;384;24;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>544</x>
-      <y>24</y>
-      <w>400</w>
-      <h>96</h>
+      <x>488</x>
+      <y>200</y>
+      <w>368</w>
+      <h>112</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.
-EventFileManager beroende av EventManager???</panel_attributes>
-    <additional_attributes>24;80;24;40;384;40;384;80</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;96;352;96</additional_attributes>
   </element>
 </diagram>
