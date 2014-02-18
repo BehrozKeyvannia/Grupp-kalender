@@ -15,6 +15,7 @@ Instansvariabler:
 Metoder: 
 
 + sendEvent() : void
+Vad mer behövs?
 
 
 
