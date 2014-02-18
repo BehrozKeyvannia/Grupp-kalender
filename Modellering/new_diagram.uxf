@@ -86,7 +86,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>8</x>
+      <x>896</x>
       <y>16</y>
       <w>144</w>
       <h>120</h>
@@ -110,8 +110,8 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>840</x>
-      <y>288</y>
+      <x>8</x>
+      <y>72</y>
       <w>160</w>
       <h>112</h>
     </coordinates>
@@ -176,13 +176,16 @@ fg=black
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>840</x>
-      <y>440</y>
+      <x>776</x>
+      <y>352</y>
       <w>160</w>
       <h>104</h>
     </coordinates>
     <panel_attributes>Trådar
 --
+???
+???
+???
 bg=light_gray
 fg=black</panel_attributes>
     <additional_attributes/>
@@ -190,23 +193,46 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>128</x>
+      <x>488</x>
       <y>0</y>
-      <w>400</w>
+      <w>424</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>384;64;384;24;24;24</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+fg=black</panel_attributes>
+    <additional_attributes>24;64;24;24;408;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>488</x>
-      <y>200</y>
-      <w>368</w>
-      <h>112</h>
+      <x>144</x>
+      <y>56</y>
+      <w>104</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>24;24;24;96;352;96</additional_attributes>
+    <additional_attributes>88;24;64;24;48;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>192</x>
+      <y>296</y>
+      <w>208</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>192;24;72;24;72;176;24;176</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>192</x>
+      <y>320</y>
+      <w>208</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>192;24;96;24;96;176;24;176</additional_attributes>
   </element>
 </diagram>
