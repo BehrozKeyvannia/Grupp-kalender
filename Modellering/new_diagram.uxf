@@ -243,7 +243,7 @@ bg=cyan</panel_attributes>
       <x>8</x>
       <y>32</y>
       <w>232</w>
-      <h>592</h>
+      <h>600</h>
     </coordinates>
     <panel_attributes>Trådar/kommunikation/Filhantering
 bg=orange</panel_attributes>
@@ -255,7 +255,7 @@ bg=orange</panel_attributes>
       <x>256</x>
       <y>32</y>
       <w>584</w>
-      <h>592</h>
+      <h>600</h>
     </coordinates>
     <panel_attributes>Main
 bg=orange</panel_attributes>
@@ -267,9 +267,10 @@ bg=orange</panel_attributes>
       <x>856</x>
       <y>32</y>
       <w>208</w>
-      <h>592</h>
+      <h>600</h>
     </coordinates>
     <panel_attributes>EmptyPackage
+fg=black
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
