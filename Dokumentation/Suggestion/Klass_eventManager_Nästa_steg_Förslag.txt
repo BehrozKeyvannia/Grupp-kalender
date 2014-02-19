@@ -30,9 +30,9 @@ Returnera värdet null om det inte finns
 Event: getEvent(int ID) == Metoden ID till eventet som man vill ha. Metoden hämtar Eventet från listan EventList (inte ifrån hMap) genom att ta index nr och returnerar det som ett ”Event”.
 Returnera värdet null om det inte finns
 
-void: RemoveEvent(String user,int eventID) == Metod som tar bort Eventet med angivna id från user's Lista i hMap.
+void: RemoveEvent(String user,int eventID) == Metod som tar bort referensen till Eventet med angivna id från user's Lista i hMap. Metoden ska även ta bort users namn från eventet
 
-void: RemoveEvent(int eventID) == Metod som kollar om String user är en tomsträng (== ""). Om sant så tar den bort Event med angivna id från EventList.
+void: RemoveEvent(int eventID) == Metod som kollar om String arrayen users är en tom. Om sant så tar den bort Event med angivna id från EventList.
 
 
 

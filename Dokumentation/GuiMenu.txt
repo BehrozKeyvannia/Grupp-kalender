@@ -1,0 +1,16 @@
+Klass GuiMenu
+Skapar en Meny för Guit. Menyn kmr inkludera menyval som 'Create new Event' ,'Help' osv. Enligt designmalet.
+
+Instansvariabler:
+
+private JMenuItem menuItem[]. Menyvalen
+
+private JMenuBar menuBar. Menyraderna
+
+Konstruktorn:
+GuiMenu()
+
+Initerar alla Menyrader och menyval
+
+
+
