@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>296</x>
-      <y>280</y>
+      <x>560</x>
+      <y>248</y>
       <w>224</w>
       <h>344</h>
     </coordinates>
@@ -41,7 +41,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>280</x>
+      <x>240</x>
       <y>72</y>
       <w>544</w>
       <h>160</h>
@@ -66,21 +66,24 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>896</x>
+      <x>824</x>
       <y>72</y>
-      <w>144</w>
-      <h>120</h>
+      <w>216</w>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>GUI
+    <panel_attributes>GuiOrg
 --
--JMenuItem: menuItem
--JMenuBar: menuBar
 -JPanel: pan
+-GuiEvent[]: b
+-int: i
 -EventManager: mang
+-String: date
+-String: weekDay
 --
++newEventJButton(Event: dasEvent): void
 +newEventWindow(): void
-+controlInput(): boolean
-+newEvent(Event: e): void
+-controlInput(): boolean
+
 
 
 bg=pink
@@ -90,7 +93,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>64</x>
+      <x>24</x>
       <y>80</y>
       <w>160</w>
       <h>120</h>
@@ -111,7 +114,7 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>48</x>
+      <x>8</x>
       <y>392</y>
       <w>176</w>
       <h>96</h>
@@ -131,7 +134,7 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>48</x>
+      <x>8</x>
       <y>496</y>
       <w>176</w>
       <h>120</h>
@@ -153,40 +156,29 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>200</x>
+      <x>160</x>
       <y>256</y>
-      <w>112</w>
+      <w>416</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>96;24;64;24;64;144;24;144</additional_attributes>
+    <additional_attributes>400;24;384;24;64;24;64;144;24;144</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>200</x>
+      <x>160</x>
       <y>264</y>
-      <w>112</w>
+      <w>416</w>
       <h>256</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>96;24;72;24;72;240;24;240</additional_attributes>
+    <additional_attributes>400;24;72;24;72;240;24;240</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>528</x>
-      <y>0</y>
-      <w>456</w>
-      <h>88</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>24;72;24;24;440;24;440;72</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>200</x>
+      <x>160</x>
       <y>64</y>
       <w>96</w>
       <h>40</h>
@@ -197,8 +189,8 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>64</x>
-      <y>216</y>
+      <x>24</x>
+      <y>232</y>
       <w>160</w>
       <h>152</h>
     </coordinates>
@@ -214,63 +206,130 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>376</x>
+      <x>248</x>
       <y>208</y>
-      <w>60</w>
-      <h>92</h>
+      <w>328</w>
+      <h>82</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
   
-  
-   *</panel_attributes>
-    <additional_attributes>32;24;32;72</additional_attributes>
+                                                          *</panel_attributes>
+    <additional_attributes>120;24;120;48;312;48</additional_attributes>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
+    <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>120</x>
-      <y>176</y>
-      <w>40</w>
-      <h>56</h>
+      <x>824</x>
+      <y>400</y>
+      <w>168</w>
+      <h>152</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>24;24;24;40</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>8</x>
-      <y>32</y>
-      <w>232</w>
-      <h>600</h>
-    </coordinates>
-    <panel_attributes>Trådar/kommunikation/Filhantering
-bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>256</x>
-      <y>32</y>
-      <w>584</w>
-      <h>600</h>
-    </coordinates>
-    <panel_attributes>Main
-bg=orange
+    <panel_attributes>GuiMenu
+--
+-JMenuItem: menuItem[]
+-JMenuBar: menuBar
+bg=pink
 fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>824</x>
+      <y>232</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>GuiEvent
+--
+-JTextField: title
+-JTextField: description
+-JButton: south
+-BoxLayout: box
+-JTextField: joined
+-JButton: join
+-BorderLayout: border
+-int: i
+
+bg=pink
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>968</x>
+      <y>192</y>
+      <w>56</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40;24;40;48;24;48</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>488</x>
+      <y>0</y>
+      <w>464</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;72;24;24;448;24;448;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>968</x>
+      <y>192</y>
+      <w>72</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;216;56;216;56;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>80</x>
+      <y>176</y>
+      <w>40</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>24;24;24;56</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1000</x>
+      <y>192</y>
+      <w>40</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;216</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>968</x>
+      <y>216</y>
+      <w>56</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;24;40;24</additional_attributes>
+  </element>
+  <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>856</x>
-      <y>32</y>
-      <w>208</w>
-      <h>600</h>
+      <x>32</x>
+      <y>8</y>
+      <w>112</w>
+      <h>56</h>
     </coordinates>
-    <panel_attributes>GUI
-fg=black
+    <panel_attributes>Fixa mappar senare 
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
