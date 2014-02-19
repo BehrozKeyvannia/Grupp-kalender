@@ -4,10 +4,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>432</x>
-      <y>328</y>
+      <x>296</x>
+      <y>280</y>
       <w>224</w>
-      <h>296</h>
+      <h>344</h>
     </coordinates>
     <panel_attributes>Event
 --
@@ -33,7 +33,7 @@
 +getHtmlString(): void
 +setWeekday(): void
 +addUser(String): void
-
++getInfo(Event: e): String
 fg=black
 bg=yellow</panel_attributes>
     <additional_attributes/>
@@ -90,7 +90,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>56</x>
+      <x>64</x>
       <y>80</y>
       <w>160</w>
       <h>120</h>
@@ -104,7 +104,6 @@ fg=black</panel_attributes>
 --
 +writeFile(Event: event): void
 +readFile(): void
-+getInfo(): String
 fg=black
 bg=cyan</panel_attributes>
     <additional_attributes/>
@@ -137,7 +136,7 @@ bg=cyan</panel_attributes>
       <w>176</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>TaEmotEvent
+    <panel_attributes>TaemotEvent
 --
 -DatagramSocket: taEmotSocket
 -final static int: port
@@ -155,23 +154,23 @@ bg=cyan</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>304</y>
-      <w>248</w>
-      <h>112</h>
+      <y>256</y>
+      <w>112</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>232;24;64;24;64;96;24;96</additional_attributes>
+    <additional_attributes>96;24;64;24;64;144;24;144</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>312</y>
-      <w>248</w>
-      <h>208</h>
+      <y>264</y>
+      <w>112</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>232;24;72;24;72;192;24;192</additional_attributes>
+    <additional_attributes>96;24;72;24;72;240;24;240</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -187,18 +186,18 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>192</x>
+      <x>200</x>
       <y>64</y>
-      <w>104</w>
+      <w>96</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>88;24;24;24</additional_attributes>
+    <additional_attributes>24;24;80;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>56</x>
+      <x>64</x>
       <y>216</y>
       <w>160</w>
       <h>152</h>
@@ -215,21 +214,21 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
+      <x>376</x>
       <y>208</y>
       <w>60</w>
-      <h>136</h>
+      <h>92</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
   
   
    *</panel_attributes>
-    <additional_attributes>32;24;32;120</additional_attributes>
+    <additional_attributes>32;24;32;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>112</x>
+      <x>120</x>
       <y>176</y>
       <w>40</w>
       <h>56</h>
@@ -273,22 +272,6 @@ fg=black</panel_attributes>
     <panel_attributes>GUI
 fg=black
 bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Interface</type>
-    <coordinates>
-      <x>104</x>
-      <y>280</y>
-      <w>64</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>Interface
---
-Operation1
-Operation2
-fg=red
-bg=red</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
