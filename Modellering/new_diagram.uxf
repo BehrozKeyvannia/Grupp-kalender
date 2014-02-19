@@ -150,7 +150,7 @@ bg=yellow</panel_attributes>
       <x>48</x>
       <y>488</y>
       <w>176</w>
-      <h>96</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>TaEmotEvent
 --
@@ -160,6 +160,8 @@ bg=yellow</panel_attributes>
 -InetAddress: iadr
 --
 +sendEvent(): void
++acceptEvent(): void 
++declineEvent(): void 
 fg=black
 bg=yellow</panel_attributes>
     <additional_attributes/>
