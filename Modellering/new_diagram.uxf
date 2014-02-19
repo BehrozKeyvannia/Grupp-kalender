@@ -4,7 +4,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>384</x>
+      <x>392</x>
       <y>312</y>
       <w>224</w>
       <h>304</h>
@@ -35,13 +35,13 @@
 +addUser(String): void
 
 fg=black
-bg=light_gray</panel_attributes>
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>232</x>
+      <x>240</x>
       <y>64</y>
       <w>544</w>
       <h>160</h>
@@ -59,19 +59,14 @@ EventManager
 +getEventById(int: id): Event
 +removeUser(String: user): void
 +removeEvent(int: id): void
-
-
-
-
-
-bg=light_gray
-fg=black</panel_attributes>
+fg=black
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>464</x>
+      <x>472</x>
       <y>200</y>
       <w>60</w>
       <h>128</h>
@@ -86,7 +81,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>896</x>
+      <x>904</x>
       <y>16</y>
       <w>144</w>
       <h>120</h>
@@ -110,7 +105,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>8</x>
+      <x>16</x>
       <y>72</y>
       <w>160</w>
       <h>112</h>
@@ -125,14 +120,14 @@ fg=black</panel_attributes>
 +writeFile(Event: event): void
 +readFile(): void
 
-bg=light_gray
+bg=yellow
 fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>40</x>
+      <x>48</x>
       <y>384</y>
       <w>176</w>
       <h>96</h>
@@ -145,16 +140,14 @@ fg=black</panel_attributes>
 -Event: sendEvent
 --
 +recieveEvent(): void
-
-
-bg=light_gray
-fg=black</panel_attributes>
+fg=black
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>40</x>
+      <x>48</x>
       <y>488</y>
       <w>176</w>
       <h>96</h>
@@ -167,72 +160,80 @@ fg=black</panel_attributes>
 -InetAddress: iadr
 --
 +sendEvent(): void
-
-bg=light_gray
 fg=black
-</panel_attributes>
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Class</type>
+    <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>776</x>
-      <y>352</y>
-      <w>160</w>
+      <x>64</x>
+      <y>160</y>
+      <w>40</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>24;48;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>304</y>
+      <w>208</w>
       <h>104</h>
     </coordinates>
-    <panel_attributes>Trådar
---
-???
-???
-???
-bg=light_gray
-fg=black</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>192;24;72;24;72;88;24;88</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>312</y>
+      <w>208</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>192;24;80;24;80;184;24;184</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>488</x>
       <y>0</y>
-      <w>424</w>
+      <w>432</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-fg=black</panel_attributes>
-    <additional_attributes>24;64;24;24;408;24</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;64;24;24;416;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>144</x>
+      <x>152</x>
       <y>56</y>
       <w>104</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>88;24;64;24;48;24;24;24</additional_attributes>
+    <additional_attributes>88;24;24;24</additional_attributes>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
+    <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>192</x>
-      <y>296</y>
-      <w>208</w>
-      <h>192</h>
+      <x>16</x>
+      <y>208</y>
+      <w>160</w>
+      <h>152</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>192;24;72;24;72;176;24;176</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>192</x>
-      <y>320</y>
-      <w>208</w>
-      <h>192</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>192;24;96;24;96;176;24;176</additional_attributes>
+    <panel_attributes>UppDate
+--
+Trådning???
+Uppdatera, skriv till .txt fil varje 
+x sekund?
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
