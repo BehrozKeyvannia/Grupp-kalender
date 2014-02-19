@@ -5,7 +5,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>432</x>
-      <y>304</y>
+      <y>328</y>
       <w>224</w>
       <h>296</h>
     </coordinates>
@@ -67,7 +67,7 @@ bg=yellow</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>896</x>
-      <y>96</y>
+      <y>72</y>
       <w>144</w>
       <h>120</h>
     </coordinates>
@@ -155,23 +155,23 @@ bg=cyan</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>280</y>
+      <y>304</y>
       <w>248</w>
-      <h>136</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>232;24;64;24;64;120;24;120</additional_attributes>
+    <additional_attributes>232;24;64;24;64;96;24;96</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>288</y>
+      <y>312</y>
       <w>248</w>
-      <h>232</h>
+      <h>208</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>232;24;72;24;72;216;24;216</additional_attributes>
+    <additional_attributes>232;24;72;24;72;192;24;192</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -179,10 +179,10 @@ bg=cyan</panel_attributes>
       <x>528</x>
       <y>0</y>
       <w>456</w>
-      <h>112</h>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>24;72;24;24;440;24;440;96</additional_attributes>
+    <additional_attributes>24;72;24;24;440;24;440;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -218,13 +218,13 @@ bg=cyan</panel_attributes>
       <x>520</x>
       <y>208</y>
       <w>60</w>
-      <h>112</h>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
   
   
    *</panel_attributes>
-    <additional_attributes>32;24;32;96</additional_attributes>
+    <additional_attributes>32;24;32;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -258,7 +258,8 @@ bg=orange</panel_attributes>
       <h>600</h>
     </coordinates>
     <panel_attributes>Main
-bg=orange</panel_attributes>
+bg=orange
+fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -269,9 +270,25 @@ bg=orange</panel_attributes>
       <w>208</w>
       <h>600</h>
     </coordinates>
-    <panel_attributes>EmptyPackage
+    <panel_attributes>GUI
 fg=black
 bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Interface</type>
+    <coordinates>
+      <x>104</x>
+      <y>280</y>
+      <w>64</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Interface
+--
+Operation1
+Operation2
+fg=red
+bg=red</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
