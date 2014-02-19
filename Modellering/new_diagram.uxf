@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>440</x>
-      <y>272</y>
+      <x>432</x>
+      <y>280</y>
       <w>224</w>
       <h>296</h>
     </coordinates>
@@ -41,8 +41,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>288</x>
-      <y>64</y>
+      <x>280</x>
+      <y>72</y>
       <w>544</w>
       <h>160</h>
     </coordinates>
@@ -66,8 +66,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>904</x>
-      <y>88</y>
+      <x>896</x>
+      <y>96</y>
       <w>144</w>
       <h>120</h>
     </coordinates>
@@ -90,8 +90,8 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>88</x>
-      <y>72</y>
+      <x>56</x>
+      <y>80</y>
       <w>160</w>
       <h>120</h>
     </coordinates>
@@ -112,8 +112,8 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>88</x>
-      <y>384</y>
+      <x>48</x>
+      <y>392</y>
       <w>176</w>
       <h>96</h>
     </coordinates>
@@ -132,8 +132,8 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>88</x>
-      <y>488</y>
+      <x>48</x>
+      <y>496</y>
       <w>176</w>
       <h>120</h>
     </coordinates>
@@ -154,52 +154,52 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>240</x>
-      <y>248</y>
-      <w>216</w>
+      <x>200</x>
+      <y>256</y>
+      <w>248</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>200;24;32;24;32;144;24;144</additional_attributes>
+    <additional_attributes>232;24;64;24;64;144;24;144</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>240</x>
-      <y>256</y>
-      <w>216</w>
+      <x>200</x>
+      <y>264</y>
+      <w>248</w>
       <h>256</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>200;24;40;24;40;240;24;240</additional_attributes>
+    <additional_attributes>232;24;72;24;72;240;24;240</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>536</x>
+      <x>528</x>
       <y>0</y>
       <w>456</w>
-      <h>104</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>24;64;24;24;440;24;440;88</additional_attributes>
+    <additional_attributes>24;72;24;24;440;24;440;96</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>224</x>
-      <y>56</y>
-      <w>80</w>
+      <x>192</x>
+      <y>64</y>
+      <w>104</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>64;24;24;24</additional_attributes>
+    <additional_attributes>88;24;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>88</x>
-      <y>208</y>
+      <x>56</x>
+      <y>216</y>
       <w>160</w>
       <h>152</h>
     </coordinates>
@@ -215,8 +215,8 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>528</x>
-      <y>200</y>
+      <x>520</x>
+      <y>208</y>
       <w>60</w>
       <h>92</h>
     </coordinates>
@@ -229,12 +229,48 @@ bg=cyan</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>144</x>
-      <y>168</y>
+      <x>112</x>
+      <y>176</y>
       <w>40</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>24;24;24;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>8</x>
+      <y>32</y>
+      <w>232</w>
+      <h>592</h>
+    </coordinates>
+    <panel_attributes>Trådar/kommunikation/Filhantering
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>256</x>
+      <y>32</y>
+      <w>584</w>
+      <h>592</h>
+    </coordinates>
+    <panel_attributes>Main
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>856</x>
+      <y>32</y>
+      <w>208</w>
+      <h>592</h>
+    </coordinates>
+    <panel_attributes>EmptyPackage
+bg=orange</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
