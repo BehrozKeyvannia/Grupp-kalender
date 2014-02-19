@@ -4,7 +4,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>392</x>
+      <x>400</x>
       <y>312</y>
       <w>224</w>
       <h>304</h>
@@ -41,7 +41,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>240</x>
+      <x>248</x>
       <y>64</y>
       <w>544</w>
       <h>160</h>
@@ -64,24 +64,9 @@ bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>472</x>
-      <y>200</y>
-      <w>60</w>
-      <h>128</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-   
-   
-   *
-fg=black</panel_attributes>
-    <additional_attributes>32;24;32;112</additional_attributes>
-  </element>
-  <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>904</x>
+      <x>912</x>
       <y>16</y>
       <w>144</w>
       <h>120</h>
@@ -105,7 +90,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>16</x>
+      <x>24</x>
       <y>72</y>
       <w>160</w>
       <h>112</h>
@@ -127,7 +112,7 @@ fg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>48</x>
+      <x>56</x>
       <y>384</y>
       <w>176</w>
       <h>96</h>
@@ -147,7 +132,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>48</x>
+      <x>56</x>
       <y>488</y>
       <w>176</w>
       <h>120</h>
@@ -169,7 +154,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>64</x>
+      <x>72</x>
       <y>160</y>
       <w>40</w>
       <h>64</h>
@@ -180,7 +165,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>200</x>
+      <x>208</x>
       <y>304</y>
       <w>208</w>
       <h>104</h>
@@ -191,7 +176,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>200</x>
+      <x>208</x>
       <y>312</y>
       <w>208</w>
       <h>200</h>
@@ -202,7 +187,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>488</x>
+      <x>496</x>
       <y>0</y>
       <w>432</w>
       <h>80</h>
@@ -213,7 +198,7 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>152</x>
+      <x>160</x>
       <y>56</y>
       <w>104</w>
       <h>40</h>
@@ -224,12 +209,12 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>16</x>
+      <x>24</x>
       <y>208</y>
       <w>160</w>
       <h>152</h>
     </coordinates>
-    <panel_attributes>UppDate
+    <panel_attributes>UppdateTextFile
 --
 Trådning???
 Uppdatera, skriv till .txt fil varje 
@@ -237,5 +222,31 @@ x sekund?
 bg=yellow
 fg=black</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>488</x>
+      <y>200</y>
+      <w>60</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+  
+  
+  
+   *</panel_attributes>
+    <additional_attributes>32;24;32;112</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>496</x>
+      <y>232</y>
+      <w>40</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;80;24;24</additional_attributes>
   </element>
 </diagram>
