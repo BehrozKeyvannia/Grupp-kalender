@@ -5,7 +5,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>432</x>
-      <y>280</y>
+      <y>304</y>
       <w>224</w>
       <h>296</h>
     </coordinates>
@@ -155,23 +155,23 @@ bg=cyan</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>256</y>
+      <y>280</y>
       <w>248</w>
-      <h>160</h>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>232;24;64;24;64;144;24;144</additional_attributes>
+    <additional_attributes>232;24;64;24;64;120;24;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>264</y>
+      <y>288</y>
       <w>248</w>
-      <h>256</h>
+      <h>232</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>232;24;72;24;72;240;24;240</additional_attributes>
+    <additional_attributes>232;24;72;24;72;216;24;216</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -218,13 +218,13 @@ bg=cyan</panel_attributes>
       <x>520</x>
       <y>208</y>
       <w>60</w>
-      <h>92</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
   
   
    *</panel_attributes>
-    <additional_attributes>32;24;32;72</additional_attributes>
+    <additional_attributes>32;24;32;96</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
