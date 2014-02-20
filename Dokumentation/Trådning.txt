@@ -1,0 +1,16 @@
+taEmotEvent 
+
+run kod som tar emot event, när den tar emot event,
+notifera user, stoppa koden, (vänta på user svar??? och 
+sen fortsätta, eller) notifera användrare och fortsätt
+kör? 
+
+Notifera användare, hur? GUI?
+Pop up GUI, går det ?
+
+eller skall det finnas en speciellt plats i GUI
+som notiferar användare?
+
+trådning 2.
+
+Var x sekund, spara/uppdatera filhanteraren .txtfiler?
