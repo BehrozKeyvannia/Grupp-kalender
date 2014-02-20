@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class GUI extends JFrame implements ActionListener {
+public class GuiOrg extends JFrame implements ActionListener {
     /*
      * @Author
      */
@@ -18,13 +18,15 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel pan = new JPanel();
     private JButton[] b = new JButton[15];
     int i=0;
-    private EventManager mang = new EventManager();
+    private EventManager mang;
     String date = null;
-    public GUI() {
+    public GuiOrg(EventManager e) {
         /**
          * 
          */
         setTitle("GUI");
+        
+        mang=e;
 
         //Build the menu.
         JMenu menu = new JMenu("Meny");
@@ -54,6 +56,7 @@ public class GUI extends JFrame implements ActionListener {
         c.add(pan);
         pack();
         setVisible(true);
+        c.setSize(300,300);
     }
     /**
      * Om nåt klickas
@@ -127,6 +130,6 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] arg) {
-        new GUI();
+        new GuiOrg(new EventManager());
     }
 }
