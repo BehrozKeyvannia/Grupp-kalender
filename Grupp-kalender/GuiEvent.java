@@ -1,6 +1,16 @@
+package GUI;
+
 import javax.swing.JButton;
 
 
-public class GuiEvent extends JButton {
 
+/**
+ * 
+ * @author Rami, Ashor
+ * 
+ */
+@SuppressWarnings("serial")
+public class GuiEvent extends JButton {
+	
+	
 }

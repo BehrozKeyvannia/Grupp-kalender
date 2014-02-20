@@ -1,12 +1,13 @@
+package Engine;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
 * Manage the events
-*
-* @author (Ashor, Akar och Ali)
-* @version whogivesashit?
+* @author (Ashor, Akar, Ali och Rami)
+* @version 1
 */
 public class EventManager
 {
@@ -27,8 +28,7 @@ public class EventManager
      * Creates and returns a Event with the specified info
      */
     public Event createEvent(String userName, String title, String date, String startTime, String endTime){
-    	eventID++;
-    	return new Event(eventID, userName, title, date, startTime, endTime);	
+    	return new Event(userName, title, date, startTime, endTime);	
     }
     /**
     * Adds an event to a user's Eventlist
