@@ -13,8 +13,7 @@ public class GuiOrg extends JFrame implements ActionListener {
      */
 
     //Create the menu bar.
-    private JMenuItem menuItem = new JMenuItem("Create new eventuuu!");
-    private JMenuBar menuBar  = new JMenuBar();
+    private GuiMenu menu = new GuiMenu();
     private JPanel pan = new JPanel();
     private JButton[] b = new JButton[15];
     int i=0;
@@ -28,9 +27,6 @@ public class GuiOrg extends JFrame implements ActionListener {
         
         mang=e;
 
-        //Build the menu.
-        JMenu menu = new JMenu("Meny");
-        menu.setMnemonic(KeyEvent.VK_A);
         
         /**
          * Tar in dagens datum från Calender och gör om den till ett enklare format
@@ -41,18 +37,10 @@ public class GuiOrg extends JFrame implements ActionListener {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         date = format1.format(cal.getTime());
 
-        /**
-         * Lägger till allt menyshit
-         */
-        menuItem.setMnemonic(KeyEvent.VK_E);
-        menuItem.setToolTipText("Create new event!");
-        menuItem.addActionListener(this);
-        menu.add(menuItem);
-        menuBar.add(menu);
         pan.setLayout(new BoxLayout(pan, BoxLayout.Y_AXIS));
         pan.add(new JLabel("<html><div style=\"text-align: center;\">" + date + "<html/>" ,JLabel.CENTER));
         Container c = getContentPane();
-        c.add(menuBar, BorderLayout.NORTH);
+        c.add(menu, BorderLayout.NORTH);
         c.add(pan);
         pack();
         setVisible(true);
@@ -62,9 +50,6 @@ public class GuiOrg extends JFrame implements ActionListener {
      * Om nåt klickas
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == menuItem) 
-            newEventWindow();
-        else{
             for(int index=0;index<i;index++){
                 if (e.getSource() == b[index]){
                 	
@@ -76,7 +61,6 @@ public class GuiOrg extends JFrame implements ActionListener {
                     System.out.println(b[index].getText());
                     break;
                 }      
-            }
         }
     }
     /**
