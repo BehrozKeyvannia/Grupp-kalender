@@ -33,7 +33,7 @@ public class GuiOrg extends JFrame implements ActionListener {
          */
 
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 1);
+        cal.add(Calendar.DATE, 0);
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         date = format1.format(cal.getTime());
 

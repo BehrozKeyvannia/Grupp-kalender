@@ -7,10 +7,9 @@
 
 public class Event
 {
-    final int ID;
-    String userName;
+    String userNames;
     String title;
-    String date;
+    String date; //"yyyy-MM-dd"
     String startTime;
     String endTime;
 
@@ -25,16 +24,20 @@ public class Event
     */
     public Event(int ID, String userName, String title, String date, String startTime, String endTime)
     {
-       this.ID = ID;
-       this.userName = userName;
+       this.userNames = userName;
        this.title = title;
        this.date = date;
        this.startTime = startTime;
        this.endTime = endTime;
 
     }
-
-public void setTitle(String newTitle)
+
+    public String[] ListOfUsers()
+    {
+        String[] listOfUsers = userNames.split(",");
+        return listOfUsers;
+    }
+    public void setTitle(String newTitle)
     {
        title = newTitle;
     }
@@ -54,14 +57,9 @@ public void setTitle(String newTitle)
        endTime = newStartTime;
     }
 
-    public int getID()
-    {
-       return ID;
-    }
-
     public String getUserName()
     {
-       return userName;
+       return userNames;
     }
 
     public String getTitle()
@@ -84,7 +82,16 @@ public void setTitle(String newTitle)
     }
     public String getHTMLString(){
     	
-    	return "<html> "+ startTime+ "  " + endTime+"<br /> "+title+ "<br /> "+userName+"</html>";
+    	return "<html> "+ startTime+ "  " + endTime+"<br /> "+title+ "<br /> "+userNames+"</html>";
+    }
+    //Must fix specialcase here: If the userToRemove is first in userNames 
+    public void removeUser(String userToRemove){
+    	userNames.replace(","+userToRemove, "");
+    	userNames.replace(userToRemove+",", "");
+    }
+    //Must fix specialcase here: If the list is empty
+    public void addUser(String userToAdd){
+    	userNames += ("," + userToAdd);
     }
 
 }
