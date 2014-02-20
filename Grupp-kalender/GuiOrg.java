@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,20 +16,29 @@ import javax.swing.*;
 public class GuiOrg extends JFrame implements ActionListener {
 
 	private GuiMenu menuBarNorth = new GuiMenu();
-	private GuiEvent eventCenter = new GuiEvent();
-	private BorderLayout border = new BorderLayout();
+	private Container eventCenter = new Container();
+	private BorderLayout border = new BorderLayout(); // for the frame
+	
+	//For the eventCenter container 
+	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
 	String date = null;
 	int i = 0;
 
+	/**
+	 * Construct the whole GUI
+	 */
 	public GuiOrg() {
 
 		this.setTitle("To do list");
 		this.getContentPane();
+
+		eventCenter.setLayout(box);
+
 		this.add(menuBarNorth);
 		this.add(eventCenter);
 		border.addLayoutComponent(menuBarNorth, BorderLayout.NORTH);
 		border.addLayoutComponent(eventCenter, BorderLayout.CENTER);
-		
+
 		this.setLayout(border);
 		setVisible(true);
 		pack();
@@ -45,6 +55,14 @@ public class GuiOrg extends JFrame implements ActionListener {
 		// setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		// add(new JLabel("<html><div style=\"text-align: center;\">" + date
 		// + "<html/>", JLabel.CENTER));
+	}
+
+	public void addNewEvent(GuiEvent event) {
+
+		eventCenter.add(event);
+		add(eventCenter);
+		pack();
+
 	}
 
 	/**
@@ -93,5 +111,11 @@ public class GuiOrg extends JFrame implements ActionListener {
 
 	public static void main(String[] arg) {
 		GuiOrg org = new GuiOrg();
+		GuiEvent event1 = new GuiEvent();
+		GuiEvent event2 = new GuiEvent();
+		GuiEvent event3 = new GuiEvent();
+		org.addNewEvent(event1);
+		org.addNewEvent(event2);
+		org.addNewEvent(event3);
 	}
 }
