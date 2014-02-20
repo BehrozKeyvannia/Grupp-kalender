@@ -1,7 +1,9 @@
+package Engine;
+
 /**
 * Create an event and its' contends.
 *
-* @author (Ashor, Akar och Ali)
+* @author (Ashor, Akar, Ali och Rami)
 * @version 1
 */
 
@@ -12,16 +14,16 @@ public class Event
     String date; //"yyyy-MM-dd"
     String startTime;
     String endTime;
-
+    
     /**
-    * Constractor for an event
-    * @param ID an unique id for event
-    *        username of the one who created the event
-    *        title of the event
-    *        date when the event will be created
-    *        start of the event
-    *        end time of the event
-    */
+     * 
+     * @param ID
+     * @param userName
+     * @param title
+     * @param date
+     * @param startTime
+     * @param endTime
+     */
     public Event(int ID, String userName, String title, String date, String startTime, String endTime)
     {
        this.userNames = userName;

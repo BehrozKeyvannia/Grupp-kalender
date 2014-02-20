@@ -1,12 +1,13 @@
+package Engine;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
 * Manage the events
-*
-* @author (Ashor, Akar och Ali)
-* @version whogivesashit?
+* @author (Ashor, Akar, Ali och Rami)
+* @version 1
 */
 public class EventManager
 {
