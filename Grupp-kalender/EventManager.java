@@ -46,7 +46,7 @@ public class EventManager
      * @param id Eventets ID
      * @return Eventet som söks
      */
-    public Event getEvent(String user,int id){
+    public Event getEvent(String user,int hashCode){
     	
     	LinkedList<Event> temp = hMap.get(user);
     	Event tempEvent;
@@ -56,13 +56,15 @@ public class EventManager
     	 while (tempIterator.hasNext()) 
          {
     		 tempEvent=tempIterator.next();
-             if(tempEvent.getID()==id)   
+             if(tempEvent.hashCode()==hashCode)   
             	 return tempEvent;
          }
-    	 //Om inget event hittas returnas null
+    	 // Inget event hittas returnas null
     	return null;
     }
-    
+    /*
+     * En 
+     */
     public int geteventID(){
     	return eventID;
     }
