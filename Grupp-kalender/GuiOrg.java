@@ -1,81 +1,50 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import Engine.Event;
-import Engine.EventManager;
 
-
+/**
+ * 
+ * @author Ashor, Rami
+ * 
+ */
 @SuppressWarnings("serial")
 public class GuiOrg extends JFrame implements ActionListener {
-	/*
-	 * @Author
-	 */
 
-	// Create the menu bar.
-	private GuiMenu menu = new GuiMenu();
-	private JPanel pan = new JPanel();
-	private JButton[] b = new JButton[15];
-	int i = 0;
-	private EventManager mang;
+	private GuiMenu menuBarNorth = new GuiMenu();
+	private GuiEvent eventCenter = new GuiEvent();
+	private BorderLayout border = new BorderLayout();
 	String date = null;
+	int i = 0;
 
-	public GuiOrg(EventManager e) {
-		/**
-         * 
-         */
-		setTitle("GUI");
+	public GuiOrg() {
 
-		mang = e;
-
-		/**
-		 * Tar in dagens datum från Calender och gör om den till ett enklare
-		 * format
-		 */
-
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 0);
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-		date = format1.format(cal.getTime());
-
-		pan.setLayout(new BoxLayout(pan, BoxLayout.Y_AXIS));
-		pan.add(new JLabel("<html><div style=\"text-align: center;\">" + date
-				+ "<html/>", JLabel.CENTER));
-		Container c = getContentPane();
-		c.add(menu, BorderLayout.NORTH);
-		c.add(pan);
-		pack();
+		this.setTitle("To do list");
+		this.getContentPane();
+		this.add(menuBarNorth);
+		this.add(eventCenter);
+		border.addLayoutComponent(menuBarNorth, BorderLayout.NORTH);
+		border.addLayoutComponent(eventCenter, BorderLayout.CENTER);
+		
+		this.setLayout(border);
 		setVisible(true);
-		c.setSize(300, 300);
-	}
+		pack();
 
-	/**
-	 * Om nåt klickas
-	 */
-	public void actionPerformed(ActionEvent e) {
-		for (int index = 0; index < i; index++) {
-			if (e.getSource() == b[index]) {
+		// /**
+		// * Tar in dagens datum från Calender och gör om den till ett enklare
+		// * format
+		// */
+		// Calendar cal = Calendar.getInstance();
+		// cal.add(Calendar.DATE, 0);
+		// SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		// date = format1.format(cal.getTime());
 
-				// Har ett problem här! Behöver assiocera knappen till ett event
-				// så jag kan ta själva eventets variabler istället för knappens
-				// text
-				// Antingen så kan man ta knappens text, hämta infot därifrån
-				// genom att separerare HTML koden och sen leta upp eventet i
-				// Hashmappen hMap
-				// Eller så kan eventID och användaren sparas på nåt annat sätt
-				// i själva JButtonen. Vet inte hur
-				// Eller så gör vi en tabell som håller reda på vilken knapp har
-				// vilket event?
-				// Need help!
-				System.out.println(b[index].getText());
-				break;
-			}
-		}
+		// setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		// add(new JLabel("<html><div style=\"text-align: center;\">" + date
+		// + "<html/>", JLabel.CENTER));
 	}
 
 	/**
@@ -108,34 +77,21 @@ public class GuiOrg extends JFrame implements ActionListener {
 				"Please Enter Starttime, Endtime and Title",
 				JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
-			mang.addEvent(mang.createEvent(userField.getText(),
-					titleField.getText(), date, startField.getText(),
-					endField.getText()));
+			// mang.addEvent(mang.createEvent(userField.getText(),
+			// titleField.getText(), date, startField.getText(),
+			// endField.getText()));
 
-			newEventJButton(mang.getEvent(userField.getText(),
-					mang.geteventID()));
-			/**
-			 * Skapar ny Knapp med Eventet som vi just skapade som inmatning
-			 * Eventet hittas genom user infon som angavs och mang's
-			 * eventvärde.Låter detta bra?
-			 */
+			GuiEvent event = new GuiEvent();
+			this.add(event);
+
 		}
 	}
 
-	/**
-	 * Metod som tar in ett Event och skapar en aktivt lyssnade JButton på
-	 * fönster med Eventets info Vet inte varför jag har dem i en array än men
-	 * kan vara användbart
-	 * */
-	public void newEventJButton(Event DasEvent) {
-		b[i] = new JButton();
-		b[i].setText(DasEvent.getHTMLString());
-		b[i].addActionListener(this);
-		pan.add(b[i++]);
-		pack();
+	public void actionPerformed(ActionEvent e) {
+
 	}
 
 	public static void main(String[] arg) {
-		new GuiOrg(new EventManager());
+		GuiOrg org = new GuiOrg();
 	}
 }
