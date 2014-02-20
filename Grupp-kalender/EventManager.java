@@ -76,11 +76,11 @@ public class EventManager
 
     public void saveEvents()
     {
-        fileHandler.writeFile(eventList);  //FÅR ENDAST ANVÄNDAS VID APPLIKATIONENS START
+        fileHandler.writeFile(eventList); 
     }
     
     public void readEvents()
     {
-        eventList = fileHandler.readFile();
+        eventList = fileHandler.readFile();  //FÅR ENDAST ANVÄNDAS VID APPLIKATIONENS START
     }
 }
