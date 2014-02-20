@@ -27,7 +27,7 @@ public class FileHandler
         }
 
         catch(Exception e) {
-            System.out.println("Unable to find the file: Events.txt");
+            System.out.println("Unable to find the file: Events.txt");   //FÖRSLAG: kanske använda "e.getMessage()" för att faktiskt få undantagets meddelande ... gäller alla undantag
         } 
     }
 
