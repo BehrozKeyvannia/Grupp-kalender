@@ -76,7 +76,7 @@ public class EventManager
 
     public void saveEvents()
     {
-        fileHandler.writeFile(eventList);
+        fileHandler.writeFile(eventList);  //FÅR ENDAST ANVÄNDAS VID APPLIKATIONENS START
     }
     
     public void readEvents()
