@@ -17,6 +17,7 @@ public class Event
     
     /**
      * 
+     * @param ID
      * @param userName
      * @param title
      * @param date
@@ -33,7 +34,7 @@ public class Event
 
     }
 
-    public String[] ListOfUsers()
+    public String[] getListOfUsers()
     {
         String[] listOfUsers = userNames.split(",");
         return listOfUsers;
