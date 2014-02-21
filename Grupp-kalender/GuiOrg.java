@@ -2,51 +2,67 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import Engine.Event;
-import Engine.EventManager;
 
-
+/**
+ * 
+ * @author Ashor, Rami
+ * 
+ */
 @SuppressWarnings("serial")
-public class GuiOrg extends JFrame{
-	/*
-	 * @Author
-	 */
+public class GuiOrg extends JFrame implements ActionListener {
 
-	// Create the menu bar.
-	private GuiMenu menu = new GuiMenu();
-	private EventManager mang;
+	private GuiMenu menuBarNorth = new GuiMenu();
+	private Container eventCenter = new Container();
+	private BorderLayout border = new BorderLayout(); // for the frame
+	
+	//For the eventCenter container 
+	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
 	String date = null;
+	int i = 0;
 
-	public GuiOrg(EventManager e) {
-		/**
-         * 
-         */
-		setTitle("GUI");
+	/**
+	 * Construct the whole GUI
+	 */
+	public GuiOrg() {
 
-		mang = e;
+		this.setTitle("To do list");
+		this.getContentPane();
 
-		/**
-		 * Tar in dagens datum från Calender och gör om den till ett enklare
-		 * format
-		 */
+		eventCenter.setLayout(box);
 
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 0);
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-		date = format1.format(cal.getTime());
+		this.add(menuBarNorth);
+		this.add(eventCenter);
+		border.addLayoutComponent(menuBarNorth, BorderLayout.NORTH);
+		border.addLayoutComponent(eventCenter, BorderLayout.CENTER);
 
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.add(new JLabel("<html><div style=\"text-align: center;\">" + date
-				+ "<html/>", JLabel.CENTER));
-		Container c = getContentPane();
-		c.add(menu, BorderLayout.NORTH);
-		c.add(this);
-		pack();
+		this.setLayout(border);
 		setVisible(true);
-		c.setSize(300, 300);
+		pack();
+
+		// /**
+		// * Tar in dagens datum från Calender och gör om den till ett enklare
+		// * format
+		// */
+		// Calendar cal = Calendar.getInstance();
+		// cal.add(Calendar.DATE, 0);
+		// SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		// date = format1.format(cal.getTime());
+
+		// setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		// add(new JLabel("<html><div style=\"text-align: center;\">" + date
+		// + "<html/>", JLabel.CENTER));
+	}
+
+	public void addNewEvent(GuiEvent event) {
+
+		eventCenter.add(event);
+		add(eventCenter);
+		pack();
+
 	}
 
 	/**
@@ -54,11 +70,9 @@ public class GuiOrg extends JFrame{
 	 * 
 	 */
 	public void newEventWindow() {
-		Event temp;
 		JTextField startField = new JTextField(5);
 		JTextField endField = new JTextField(5);
 		JTextField titleField = new JTextField(5);
-		JTextField descField = new JTextField(5);
 		JTextField userField = new JTextField(5);
 
 		/**
@@ -74,32 +88,34 @@ public class GuiOrg extends JFrame{
 		myPanel.add(new JLabel("Title:  "));
 		myPanel.add(titleField);
 		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-		myPanel.add(new JLabel("Description:  "));
-		myPanel.add(descField);
-		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
 		myPanel.add(new JLabel("User:  "));
 		myPanel.add(userField);
 
 		int result = JOptionPane.showConfirmDialog(null, myPanel,
-				"Please Enter Starttime, Endtime, Title, Description and User(s)",
+				"Please Enter Starttime, Endtime and Title",
 				JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
-			temp = mang.createEvent(userField.getText(),
-					titleField.getText(), date, startField.getText(),
-					endField.getText());
-			mang.addEvent(temp);
-			
-	//		newEventJButton(mang.getEvent(userField.getText(),
-	//				mang.geteventID()));
-			/**
-			 * Skapar ny Knapp med Eventet som vi just skapade som inmatning
-			 * Eventet hittas genom user infon som angavs och eventets hashCode.
-			 */
+			// mang.addEvent(mang.createEvent(userField.getText(),
+			// titleField.getText(), date, startField.getText(),
+			// endField.getText()));
+
+			GuiEvent event = new GuiEvent();
+			this.add(event);
+
 		}
 	}
 
+	public void actionPerformed(ActionEvent e) {
+
+	}
 
 	public static void main(String[] arg) {
-		new GuiOrg(new EventManager());
+		GuiOrg org = new GuiOrg();
+		GuiEvent event1 = new GuiEvent();
+		GuiEvent event2 = new GuiEvent();
+		GuiEvent event3 = new GuiEvent();
+		org.addNewEvent(event1);
+		org.addNewEvent(event2);
+		org.addNewEvent(event3);
 	}
 }
