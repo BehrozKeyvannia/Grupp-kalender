@@ -33,10 +33,14 @@ public class GuiEvent extends JButton {
 	private BorderLayout border = new BorderLayout();
 	private int i = 1;
 
+	private int hashCode = 0;
+
 	/**
 	 * Constructor for the event
 	 */
-	public GuiEvent() {
+	public GuiEvent(int hashCode) {
+
+		this.hashCode = hashCode;
 
 		titleNorth.setHorizontalAlignment(JTextField.CENTER);
 		descriptionCenter.setHorizontalAlignment(JTextField.CENTER);
