@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-
+import java.util.Timer;
 /**
  * Manage the events
  *
@@ -22,6 +22,8 @@ public class EventManager
     {
         hMap = new HashMap<String, LinkedList<Event>>();
         eventList = new LinkedList<Event>();
+        Timer timer = new Timer();
+        timer.schedule(new ThreadOne(),0,15000);
     }
 
     /**
