@@ -107,14 +107,21 @@ public class GuiOrg extends JFrame implements ActionListener {
 	private void newEventWindow() {
 
 		JTextField userField = new JTextField(5);
+		JTextField titleField = new JTextField(5);
+		JTextField dateField = new JTextField(5);
 		JTextField startField = new JTextField(5);
 		JTextField endField = new JTextField(5);
-		JTextField titleField = new JTextField(5);
 		JTextField descriptionField = new JTextField(5);
 
 		JPanel myPanel = new JPanel();
 		myPanel.add(new JLabel("userName:  "));
 		myPanel.add(userField);
+		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+		myPanel.add(new JLabel("title:  "));
+		myPanel.add(titleField);
+		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+		myPanel.add(new JLabel("date:  "));
+		myPanel.add(dateField);
 		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
 		myPanel.add(new JLabel("startTime:  "));
 		myPanel.add(startField);
@@ -122,31 +129,32 @@ public class GuiOrg extends JFrame implements ActionListener {
 		myPanel.add(new JLabel("endTime:  "));
 		myPanel.add(endField);
 		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-		myPanel.add(new JLabel("title:  "));
-		myPanel.add(titleField);
-		myPanel.add(Box.createHorizontalStrut(15)); // a spacer
 		myPanel.add(new JLabel("description:  "));
 		myPanel.add(descriptionField);
-		
+
 		// Show Confirm dialog window
 		int result = JOptionPane.showConfirmDialog(null, myPanel,
-				"Please enter what is needed",
-				JOptionPane.OK_CANCEL_OPTION);
+				"Please enter what is needed", JOptionPane.OK_CANCEL_OPTION);
 
 		if (result == JOptionPane.OK_OPTION) {
 
-			String userNames = "user";
-			String title = "title";
-			String date = "date";
-			String startTime = "startTime";
-			String endTime = "endTime";
-			String description = "description";
-			
-			Event event = manager.createNewEvent(userNames, title, date,
-					startTime, endTime, description);
-			manager.addEvent(event);							// Send events to EventManager
-			GuiEvent guiEvent = new GuiEvent(event.hashCode());	//Create GuiEvent and pass hash code  to it
-			this.addNewEvent(guiEvent);							//Add this event to GUI
+			/**
+			 * Remove the comment and you get NullPointerException something wrong
+			 * with Event EventManager
+			 * 
+			 * Event event = manager.createNewEvent(userField.getText(),
+			 * titleField.getText(), dateField.getText(), startField.getText(),
+			 * endField.getText(), descriptionField.getText());
+			 * 
+			 * manager.addEvent(event); // Send events to EventManager to be //
+			 * created
+			 */
+
+			GuiEvent guiEvent = new GuiEvent(/*event.hashCode()*/0); // Create
+																// GuiEvent and
+																// pass hash
+																// code to it
+			this.addNewEvent(guiEvent); // Add this event to GUI
 		}
 	}
 
