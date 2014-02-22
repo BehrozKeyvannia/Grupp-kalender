@@ -2,16 +2,14 @@ package GUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import Engine.EventManager;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
+
+import Engine.EventManager;
 
 /**
  * Create a new event item
@@ -41,20 +39,21 @@ public class GuiEvent extends JButton {
 
 	private int hashCode = 0;
 	private EventManager manager;
-	private int i = 1; // userJoined counter
+	private int usersJoined = 0; // userJoined counter
 
 	/**
 	 * Constructor for the event
 	 */
-	public GuiEvent(int hashCode, String userName, String title, String date,
-			String statTime, String endTime, String description) {
+	public GuiEvent(int hashCode, EventManager manager) {
 
+		this.manager = manager;
 		this.hashCode = hashCode;
-		titleNorth.setText(title);
-		dateCenter.setText(date);
-		startTimeWest.setText(statTime);
-		endTimeWest.setText(endTime);
-		descriptionEast.setText(description);
+		titleNorth.setText(manager.getEventByID(hashCode).getTitle());
+		dateCenter.setText(manager.getEventByID(hashCode).getDate());
+		startTimeWest.setText(manager.getEventByID(hashCode).getStartTime());
+		endTimeWest.setText(manager.getEventByID(hashCode).getEndTime());
+		descriptionEast
+				.setText(manager.getEventByID(hashCode).getDescription());
 
 		titleNorth.setHorizontalAlignment(JTextField.CENTER);
 		descriptionEast.setHorizontalAlignment(JTextField.CENTER);
@@ -85,28 +84,28 @@ public class GuiEvent extends JButton {
 		setLayout(border);
 	}
 
-	public GuiEvent(EventManager manager) {
-		this.manager = manager;
-	}
-
 	/**
 	 * Add action listener to join button and increment joined field if joined
 	 * clicked. set joined editable to false
 	 */
 	private void AddListenerToJoin() {
 		joinSouth.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				if (event.getSource() == joinSouth) {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == joinSouth) {
 					JTextField userName = new JTextField();
 					int ok = JOptionPane.showConfirmDialog(null, userName,
-							"Please enter your userNmae", JOptionPane.OK_CANCEL_OPTION);
-					if (ok==JOptionPane.OK_OPTION){
-						
-						//Rami this must get fixed. Must retrieve how many users r joined.
-						//manager.getEventByID(hashCode).addUser(userName.getText());
-						
-						joinedSouth.setText("" + i);
-						i++;
+							"Please enter your userName",
+							JOptionPane.OK_CANCEL_OPTION);
+					if (ok == JOptionPane.OK_OPTION) {
+
+						// Get the event and add the user to the event
+						(manager.getEventByID(hashCode)).addUser(userName
+								.getText());
+
+						// Get how many users are joined
+						usersJoined = manager.getEventByID(hashCode)
+								.getListOfUsers().length;
+						joinedSouth.setText("" + usersJoined);
 					}
 				}
 			}

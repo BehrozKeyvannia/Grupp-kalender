@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.*;
 
@@ -38,6 +39,7 @@ public class GuiOrg extends JFrame implements ActionListener {
 	 */
 	public GuiOrg(EventManager manager) {
 
+		this.manager = manager;
 		this.setTitle("To do list");
 		this.getContentPane();
 
@@ -67,7 +69,7 @@ public class GuiOrg extends JFrame implements ActionListener {
 
 		menuItemA2 = new JMenuItem("");
 
-		menuItemA3 = new JMenuItem("Menu Item A3");
+		menuItemA3 = new JMenuItem("Remove all events");
 		menuItemA3.addActionListener(this);
 
 		File.add(menuItemA1);
@@ -85,7 +87,6 @@ public class GuiOrg extends JFrame implements ActionListener {
 		menuBarNorth.add(menuB);
 		this.add(menuBarNorth);
 	}
-
 	/**
 	 * Add a new event to the GUI
 	 * 
@@ -96,9 +97,29 @@ public class GuiOrg extends JFrame implements ActionListener {
 
 		eventCenter.add(event);
 		this.add(eventCenter);
-		this.revalidate();
 		this.pack();
-		this.repaint();
+	}
+	
+	/**
+	 * Remove all the GUI Events from the screen
+	 */
+	private void removeAllEvents(){
+		
+		eventCenter.removeAll();
+		this.pack();
+	}
+	
+	/**
+	 * Create new GUI events for a collection of Iterator
+	 * @param eventIterator The iterator that will be used to create the new events
+	 */
+	public void createEventsIterator(Iterator<Event> eventIterator) {
+		
+		Event tempEvent = eventIterator.next();
+		while(eventIterator.hasNext()){
+			GuiEvent guiEvent = new GuiEvent(tempEvent.hashCode(), manager);
+			addNewEvent(guiEvent);
+		}
 	}
 
 	/**
@@ -138,22 +159,19 @@ public class GuiOrg extends JFrame implements ActionListener {
 
 		if (result == JOptionPane.OK_OPTION) {
 
-//			int tempHashCode = manager.addEvent(
-//					manager.createNewEvent(userField.getText(),
-//							titleField.getText(), dateField.getText(),
-//							startField.getText(), endField.getText(),
-//							descriptionField.getText())).hashCode();
+			int tempHashCode = manager.addEvent(
+					manager.createNewEvent(userField.getText(),
+							titleField.getText(), dateField.getText(),
+							startField.getText(), endField.getText(),
+							descriptionField.getText())).hashCode();
 
-			GuiEvent guiEvent = new GuiEvent(/*change this later*/0, userField.getText(),
-					titleField.getText(), dateField.getText(),
-					startField.getText(), endField.getText(),
-					descriptionField.getText()); // Create
-													// GuiEvent
-													// and
-													// pass
-													// hash
-													// code
-													// to it
+			GuiEvent guiEvent = new GuiEvent(tempHashCode, manager); // Create
+			// GuiEvent
+			// and
+			// pass
+			// hash
+			// code
+			// to it
 			this.addNewEvent(guiEvent); // Add this event to GUI
 		}
 	}
@@ -167,7 +185,7 @@ public class GuiOrg extends JFrame implements ActionListener {
 			newEventWindow();
 
 		else if (e.getSource() == menuItemA3)
-			System.out.println("You want to do something");
+			removeAllEvents();
 
 		else if (e.getSource() == menuItemB1)
 			System.out.println("You want to do exit");
@@ -176,5 +194,6 @@ public class GuiOrg extends JFrame implements ActionListener {
 	public static void main(String[] arg) {
 		EventManager manager = new EventManager();
 		GuiOrg org = new GuiOrg(manager);
+
 	}
 }
