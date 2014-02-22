@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import GUI.GuiOrg;
+
 /**
  * Manage the events
- * 
+ *
  * @author (Ashor, Akar, Ali och Rami)
  * @version 1
  */
@@ -24,7 +26,7 @@ public class EventManager {
 
 	/**
 	 * Creates and returns a Event with the specified info
-	 * @param description 
+	 * @param description
 	 */
 	public Event createNewEvent(String userNames, String title, String date,
 			String startTime, String endTime, String description) {
@@ -33,9 +35,9 @@ public class EventManager {
 
 	/**
 	 * Adds an event to a user's Event list
-	 * 
+	 *
 	 * @param event
-	 *            The event that will be added
+	 * The event that will be added
 	 */
 	public void addEventList(LinkedList<Event> list) {
 		Iterator<Event> tempIterator = list.iterator();
@@ -44,7 +46,7 @@ public class EventManager {
 		}
 	}
 
-	public void addEvent(Event event) {
+	public Event addEvent(Event event) {
 		if (!eventList.contains(event))
 			eventList.addLast(event);
 		String[] list = event.getListOfUsers();
@@ -54,14 +56,15 @@ public class EventManager {
 			}
 			hMap.get(event.getUserName()).add(eventList.getLast());
 		}
+		return event;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param user
-	 *            Vilken användares lista som kmr sökas
+	 * Vilken användares lista som kmr sökas
 	 * @param id
-	 *            Eventets ID
+	 * Eventets ID
 	 * @return Eventet som söks
 	 */
 	public Event getEvent(String user, int hashCode) {

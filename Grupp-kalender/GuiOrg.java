@@ -138,22 +138,22 @@ public class GuiOrg extends JFrame implements ActionListener {
 
 		if (result == JOptionPane.OK_OPTION) {
 
-			/**
-			 * Remove the comment and you get NullPointerException something wrong
-			 * with Event EventManager
-			 * 
-			 * Event event = manager.createNewEvent(userField.getText(),
-			 * titleField.getText(), dateField.getText(), startField.getText(),
-			 * endField.getText(), descriptionField.getText());
-			 * 
-			 * manager.addEvent(event); // Send events to EventManager to be //
-			 * created
-			 */
+//			int tempHashCode = manager.addEvent(
+//					manager.createNewEvent(userField.getText(),
+//							titleField.getText(), dateField.getText(),
+//							startField.getText(), endField.getText(),
+//							descriptionField.getText())).hashCode();
 
-			GuiEvent guiEvent = new GuiEvent(/*event.hashCode()*/0); // Create
-																// GuiEvent and
-																// pass hash
-																// code to it
+			GuiEvent guiEvent = new GuiEvent(/*change this later*/0, userField.getText(),
+					titleField.getText(), dateField.getText(),
+					startField.getText(), endField.getText(),
+					descriptionField.getText()); // Create
+													// GuiEvent
+													// and
+													// pass
+													// hash
+													// code
+													// to it
 			this.addNewEvent(guiEvent); // Add this event to GUI
 		}
 	}

@@ -1,100 +1,100 @@
 package Engine;
 
 /**
- * Create an event and its' contends.
- * 
- * @author (Ashor, Akar, Ali och Rami)
- * @version 1
- */
+* Create an event and its' contends.
+*
+* @author (Ashor, Akar, Ali och Rami)
+* @version 1
+*/
 
 public class Event {
-	private String userName;
-	private String title;
-	private String date; // "yyyy-MM-dd"
-	private String startTime;
-	private String endTime;
-	private String description;
-	
-	/**
-	 * Create an event by user inputs
-	 * @param userName
-	 * @param title
-	 * @param date
-	 * @param startTime
-	 * @param endTime
-	 * @param description
-	 */
-	public Event(String userName, String title, String date, String startTime,
-			String endTime, String description) {
-		
-		this.userName = userName;
-		this.title = title;
-		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.description = description;
-	}
+private String userNames;
+private String title;
+private String date; // "yyyy-MM-dd"
+private String startTime;
+private String endTime;
+private String description;
 
-	public String[] getListOfUsers() {
-		String[] listOfUsers = userName.split(",");
-		return listOfUsers;
-	}
+/**
+* Create an event by user inputs
+* @param userName
+* @param title
+* @param date
+* @param startTime
+* @param endTime
+* @param description
+*/
+public Event(String userNames, String title, String date, String startTime,
+String endTime, String description) {
 
-	public void setTitle(String newTitle) {
-		title = newTitle;
-	}
+this.userNames = userNames;
+this.title = title;
+this.date = date;
+this.startTime = startTime;
+this.endTime = endTime;
+this.description = description;
+}
 
-	public void setDate(String newDate) {
-		date = newDate;
-	}
+public String[] getListOfUsers() {
+String[] listOfUsers = userNames.split(",");
+return listOfUsers;
+}
 
-	public void setStartTime(String newStartTime) {
-		startTime = newStartTime;
-	}
+public void setTitle(String newTitle) {
+title = newTitle;
+}
 
-	public void setEndTime(String newStartTime) {
-		endTime = newStartTime;
-	}
-	
-	public void setDescription(String newDescription) {
-		description = newDescription;
-	}
+public void setDate(String newDate) {
+date = newDate;
+}
 
-	public String getUserName() {
-		return userName;
-	}
+public void setStartTime(String newStartTime) {
+startTime = newStartTime;
+}
 
-	public String getTitle() {
-		return title;
-	}
+public void setEndTime(String newStartTime) {
+endTime = newStartTime;
+}
 
-	public String getDate() {
-		return date;
-	}
+public void setDescription(String newDescription) {
+description = newDescription;
+}
 
-	public String getStartTime() {
-		return startTime;
-	}
+public String getUserName() {
+return userNames;
+}
 
-	public String getEndTime() {
-		return endTime;
-	}
+public String getTitle() {
+return title;
+}
 
-	public String getHTMLString() {
+public String getDate() {
+return date;
+}
 
-		return "<html> " + startTime + "  " + endTime + "<br /> " + title
-				+ "<br /> " + userName + "</html>";
-	}
+public String getStartTime() {
+return startTime;
+}
 
-	// Must fix specialcase here: If the userToRemove is first in userNames
-	public void removeUser(String userToRemove) {
-		userName.replace("," + userToRemove, "");
-		userName.replace(userToRemove + ",", "");
-	}
+public String getEndTime() {
+return endTime;
+}
 
-	// Must fix specialcase here: If the list is empty
-	public void addUser(String userToAdd) {
-		userName += ("," + userToAdd);
-	}
+public String getHTMLString() {
+
+return "<html> " + startTime + " " + endTime + "<br /> " + title
++ "<br /> " + userNames + "</html>";
+}
+
+// Must fix specialcase here: If the userToRemove is first in userNames
+public void removeUser(String userToRemove) {
+userNames.replace("," + userToRemove, "");
+userNames.replace(userToRemove + ",", "");
+}
+
+// Must fix specialcase here: If the list is empty
+public void addUser(String userToAdd) {
+userNames += ("," + userToAdd);
+}
 
 }
