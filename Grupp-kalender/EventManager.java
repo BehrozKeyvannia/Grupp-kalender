@@ -1,5 +1,6 @@
 package Engine;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -29,8 +30,9 @@ public class EventManager {
 	 */
 	public Event createNewEvent(String userNames, String title, String date,
 			String startTime, String endTime, String description) {
-		return new Event(userNames, title, date, startTime, endTime,
+		Event temp = new Event(userNames, title, date, startTime, endTime,
 				description);
+		return temp;
 	}
 
 	/**
@@ -46,15 +48,19 @@ public class EventManager {
 		}
 	}
 
+	public void sortEventList() {
+		Collections.sort(eventList);
+	}
+
 	public Event addEvent(Event event) {
 		if (!eventList.contains(event))
 			eventList.addLast(event);
 		String[] list = event.getListOfUsers();
 		for (int i = 0; i < list.length; i++) {
 			if (!hMap.containsKey(list[i])) {
-				hMap.put(event.getUserName(), new LinkedList<Event>());
+				hMap.put(list[i], new LinkedList<Event>());
 			}
-			hMap.get(event.getUserName()).add(eventList.getLast());
+			hMap.get(list[i]).add(eventList.getLast());
 		}
 		return event;
 	}
@@ -104,5 +110,23 @@ public class EventManager {
 			if (!eventList.contains(temp))
 				eventList.remove(temp);
 		}
+	}
+
+	public static void main(String[] arg) {
+		EventManager e = new EventManager();
+		e.addEvent(e.createNewEvent("Rami,Behroz,Akar", "Go fuck yourself",
+				"2014-05-14", "20:00", "21:00", "Bajsa"));
+		e.addEvent(e.createNewEvent("Rami", "Shittin", "2014-05-13", "20:00",
+				"21:00", "Promenad"));
+		e.addEvent(e.createNewEvent("Behroz", "pppfffffft", "2014-05-15",
+				"20:00", "21:00", "Hälsa"));
+		e.addEvent(e.createNewEvent("Ashor,Stefan", "Haj Haj", "2014-05-12",
+				"20:30", "21:00", "Plugga"));
+		int hash = e.addEvent(
+				e.createNewEvent("Josef Stalin,Hitler,Mao", "Conquering world",
+						"2014-05-12", "20:20", "21:00",
+						"Sending people to Gulag")).hashCode();
+		e.sortEventList();
+		e.removeEvent(hash);
 	}
 }

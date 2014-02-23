@@ -42,6 +42,7 @@ public class GuiOrg extends JFrame implements ActionListener {
 		this.manager = manager;
 		this.setTitle("To do list");
 		this.getContentPane();
+		this.setLayout(border);
 
 		createMenu();
 
@@ -51,7 +52,6 @@ public class GuiOrg extends JFrame implements ActionListener {
 		border.addLayoutComponent(menuBarNorth, BorderLayout.NORTH);
 		border.addLayoutComponent(eventCenter, BorderLayout.CENTER);
 
-		this.setLayout(border);
 		setVisible(true);
 		pack();
 	}
@@ -87,6 +87,7 @@ public class GuiOrg extends JFrame implements ActionListener {
 		menuBarNorth.add(menuB);
 		this.add(menuBarNorth);
 	}
+
 	/**
 	 * Add a new event to the GUI
 	 * 
@@ -99,24 +100,26 @@ public class GuiOrg extends JFrame implements ActionListener {
 		this.add(eventCenter);
 		this.pack();
 	}
-	
+
 	/**
 	 * Remove all the GUI Events from the screen
 	 */
-	private void removeAllEvents(){
-		
+	private void removeAllEvents() {
+
 		eventCenter.removeAll();
 		this.pack();
 	}
-	
+
 	/**
 	 * Create new GUI events for a collection of Iterator
-	 * @param eventIterator The iterator that will be used to create the new events
+	 * 
+	 * @param eventIterator
+	 *            The iterator that will be used to create the new events
 	 */
 	public void createEventsIterator(Iterator<Event> eventIterator) {
-		
+
 		Event tempEvent = eventIterator.next();
-		while(eventIterator.hasNext()){
+		while (eventIterator.hasNext()) {
 			GuiEvent guiEvent = new GuiEvent(tempEvent.hashCode(), manager);
 			addNewEvent(guiEvent);
 		}
@@ -127,12 +130,23 @@ public class GuiOrg extends JFrame implements ActionListener {
 	 */
 	private void newEventWindow() {
 
-		JTextField userField = new JTextField(5);
-		JTextField titleField = new JTextField(5);
-		JTextField dateField = new JTextField(5);
-		JTextField startField = new JTextField(5);
-		JTextField endField = new JTextField(5);
-		JTextField descriptionField = new JTextField(5);
+		JTextField userField = new JTextField(8);
+		userField.setToolTipText("Enter user name");
+
+		JTextField titleField = new JTextField(6);
+		titleField.setToolTipText("Enter title");
+
+		JTextField dateField = new JTextField(8);
+		dateField.setToolTipText("Enter yyyy-mm-dd");
+
+		JTextField startField = new JTextField(6);
+		startField.setToolTipText("Enter hh:mm");
+
+		JTextField endField = new JTextField(6);
+		endField.setToolTipText("Enter hh:mm");
+
+		JTextField descriptionField = new JTextField(10);
+		descriptionField.setToolTipText("Describe you event please");
 
 		JPanel myPanel = new JPanel();
 		myPanel.add(new JLabel("userName:  "));
@@ -153,26 +167,52 @@ public class GuiOrg extends JFrame implements ActionListener {
 		myPanel.add(new JLabel("description:  "));
 		myPanel.add(descriptionField);
 
-		// Show Confirm dialog window
-		int result = JOptionPane.showConfirmDialog(null, myPanel,
-				"Please enter what is needed", JOptionPane.OK_CANCEL_OPTION);
+		while (true) {
 
-		if (result == JOptionPane.OK_OPTION) {
+			// Show Confirm dialog window
+			int result = JOptionPane
+					.showConfirmDialog(null, myPanel,
+							"Please enter what is needed",
+							JOptionPane.OK_CANCEL_OPTION);
 
-			int tempHashCode = manager.addEvent(
-					manager.createNewEvent(userField.getText(),
-							titleField.getText(), dateField.getText(),
-							startField.getText(), endField.getText(),
-							descriptionField.getText())).hashCode();
+			// Check that user name is entered
+			if (result == JOptionPane.OK_OPTION
+					&& userField.getText().equals(""))
+				JOptionPane.showMessageDialog(null, "Please enter a user name");
 
-			GuiEvent guiEvent = new GuiEvent(tempHashCode, manager); // Create
-			// GuiEvent
-			// and
-			// pass
-			// hash
-			// code
-			// to it
-			this.addNewEvent(guiEvent); // Add this event to GUI
+			// Check for date format input is correct entered
+			if (result == JOptionPane.OK_OPTION
+					&& !dateField.getText().matches(
+							("(\\d{4}+)(-{1}+)(\\d{2}+)(-{1}+)(\\d{2}+)")))
+				JOptionPane.showMessageDialog(null,
+						"Please enter day as yyyy-mm-dd format");
+
+			// Check to see that time format is correct
+			else if (result == JOptionPane.OK_OPTION
+					&& (!startField.getText().matches(
+							("(\\d{2}+)(:{1}+)(\\d{2}+)")) || !endField
+							.getText().matches(("(\\d{2}+)(:{1}+)(\\d{2}+)"))))
+				JOptionPane.showMessageDialog(null,
+						"Please enter time as hh-mm format");
+
+			// If canceled then exit
+			else if (result == JOptionPane.CANCEL_OPTION)
+				break;
+
+			else {
+
+				int tempHashCode = manager.addEvent(
+						manager.createNewEvent(userField.getText(),
+								titleField.getText(), dateField.getText(),
+								startField.getText(), endField.getText(),
+								descriptionField.getText())).hashCode();
+
+				// Create GuiEvent and pass hash code to it
+				GuiEvent guiEvent = new GuiEvent(tempHashCode, manager);
+
+				this.addNewEvent(guiEvent); // Add this event to GUI
+				break;
+			}
 		}
 	}
 

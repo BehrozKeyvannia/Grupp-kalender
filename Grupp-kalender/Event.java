@@ -1,5 +1,10 @@
 package Engine;
 
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+
 /**
  * Create an event and its' contends.
  * 
@@ -7,13 +12,15 @@ package Engine;
  * @version 1
  */
 
-public class Event {
+public class Event implements Comparable<Event> {
 	private String userNames;
 	private String title;
-	private String date; // "yyyy-MM-dd"
+	private String date;
+	private Date date2;
 	private String startTime;
 	private String endTime;
 	private String description;
+	private DateFormat formatter;
 
 	/**
 	 * Create an event by user inputs
@@ -24,17 +31,22 @@ public class Event {
 	 * @param startTime
 	 * @param endTime
 	 * @param description
+	 * @throws ParseException
 	 */
 	public Event(String userNames, String title, String date, String startTime,
 			String endTime, String description) {
+		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		try {
+			this.date2 = (Date) formatter.parse(date + " " + startTime);
+		} catch (ParseException e) {
 
+		}
+		this.date = date;
 		this.userNames = userNames;
 		this.title = title;
-		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.description = description;
-
 	}
 
 	public String[] getListOfUsers() {
@@ -47,10 +59,22 @@ public class Event {
 	}
 
 	public void setDate(String newDate) {
+		formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			date2 = (Date) formatter.parse(newDate);
+		} catch (ParseException e) {
+
+		}
 		date = newDate;
 	}
 
 	public void setStartTime(String newStartTime) {
+		formatter = new SimpleDateFormat("HH:mm");
+		try {
+			date2 = (Date) formatter.parse(newStartTime);
+		} catch (ParseException e) {
+
+		}
 		startTime = newStartTime;
 	}
 
@@ -62,7 +86,7 @@ public class Event {
 		description = newDescription;
 	}
 
-	public String getUserName() {
+	public String getUserNames() {
 		return userNames;
 	}
 
@@ -74,6 +98,10 @@ public class Event {
 		return date;
 	}
 
+	public Date getDate2() {
+		return date2;
+	}
+
 	public String getStartTime() {
 		return startTime;
 	}
@@ -83,12 +111,12 @@ public class Event {
 	}
 
 	public String getDescription() {
-		return endTime;
+		return description;
 	}
 
 	public String getHTMLString() {
 
-		return "<html> " + startTime + " " + endTime + "<br /> " + title
+		return "<html> " + startTime + "  " + endTime + "<br /> " + title
 				+ "<br /> " + userNames + "</html>";
 	}
 
@@ -98,10 +126,16 @@ public class Event {
 		userNames.replace(userToRemove + ",", "");
 	}
 
-	// Must fix specialcase here: If the list is empty
 	public void addUser(String userToAdd) {
-		if( !(userToAdd==null) )
-		userNames += ("," + userToAdd);
+		if (userNames == null || userNames.equals(""))
+			userNames = userToAdd;
+		else
+			userNames += ("," + userToAdd);
 	}
 
+	// Must fix inparameter control.
+	@Override
+	public int compareTo(Event o) {
+		return getDate2().compareTo(o.getDate2());
+	}
 }

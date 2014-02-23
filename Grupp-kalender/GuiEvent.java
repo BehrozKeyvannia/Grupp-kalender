@@ -2,13 +2,14 @@ package GUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
-
 import Engine.EventManager;
 
 /**
@@ -18,11 +19,11 @@ import Engine.EventManager;
  * 
  */
 @SuppressWarnings("serial")
-public class GuiEvent extends JButton {
+public class GuiEvent extends JPanel {
 
 	private JTextField titleNorth = new JTextField("noTitle");
-	private JTextField dateCenter = new JTextField("noDate");
-	private JTextField descriptionEast = new JTextField("noDescription");
+	private JTextField dateEast = new JTextField("noDate");
+	private JTextField descriptionCenter = new JTextField("noDescription");
 
 	private JTextField startTimeWest = new JTextField("noStartTime");
 	private JTextField endTimeWest = new JTextField("noEndTime");
@@ -35,7 +36,7 @@ public class GuiEvent extends JButton {
 	Container south = new Container();
 
 	private BorderLayout border = new BorderLayout(); // A layout for the whole
-														// GUI
+														// GUI event
 
 	private int hashCode = 0;
 	private EventManager manager;
@@ -46,25 +47,35 @@ public class GuiEvent extends JButton {
 	 */
 	public GuiEvent(int hashCode, EventManager manager) {
 
+		this.setLayout(border);
+
 		this.manager = manager;
 		this.hashCode = hashCode;
+
 		titleNorth.setText(manager.getEventByID(hashCode).getTitle());
-		dateCenter.setText(manager.getEventByID(hashCode).getDate());
+		dateEast.setText(manager.getEventByID(hashCode).getDate());
 		startTimeWest.setText(manager.getEventByID(hashCode).getStartTime());
 		endTimeWest.setText(manager.getEventByID(hashCode).getEndTime());
-		descriptionEast
-				.setText(manager.getEventByID(hashCode).getDescription());
+		descriptionCenter.setText(manager.getEventByID(hashCode)
+				.getDescription());
+
+		titleNorth.setEditable(false);
+		dateEast.setEditable(false);
+		startTimeWest.setEditable(false);
+		endTimeWest.setEditable(false);
+		descriptionCenter.setEditable(false);
 
 		titleNorth.setHorizontalAlignment(JTextField.CENTER);
-		descriptionEast.setHorizontalAlignment(JTextField.CENTER);
+		descriptionCenter.setHorizontalAlignment(JTextField.CENTER);
+		dateEast.setHorizontalAlignment(JTextField.CENTER);
 		add(titleNorth);
-		add(descriptionEast);
-		add(dateCenter);
+		add(descriptionCenter);
+		add(dateEast);
 
 		AddListenerToJoin();
+		south.setLayout(gridSouth);
 		south.add(joinedSouth);
 		south.add(joinSouth);
-		south.setLayout(gridSouth);
 		add(south);
 
 		startTimeWest.setHorizontalAlignment(JTextField.CENTER);
@@ -76,12 +87,11 @@ public class GuiEvent extends JButton {
 
 		// Initiate the border layout of the event button
 		border.addLayoutComponent(titleNorth, BorderLayout.NORTH);
-		border.addLayoutComponent(dateCenter, BorderLayout.CENTER);
-		border.addLayoutComponent(descriptionEast, BorderLayout.EAST);
+		border.addLayoutComponent(dateEast, BorderLayout.EAST);
+		border.addLayoutComponent(descriptionCenter, BorderLayout.CENTER);
 		border.addLayoutComponent(south, BorderLayout.SOUTH);
 		border.addLayoutComponent(west, BorderLayout.WEST);
 
-		setLayout(border);
 	}
 
 	/**
@@ -93,19 +103,26 @@ public class GuiEvent extends JButton {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == joinSouth) {
 					JTextField userName = new JTextField();
-					int ok = JOptionPane.showConfirmDialog(null, userName,
-							"Please enter your userName",
-							JOptionPane.OK_CANCEL_OPTION);
-					if (ok == JOptionPane.OK_OPTION) {
+					while (true) {
+						int ok = JOptionPane.showConfirmDialog(null, userName,
+								"Please enter your userName",
+								JOptionPane.OK_CANCEL_OPTION);
 
-						// Get the event and add the user to the event
-						(manager.getEventByID(hashCode)).addUser(userName
-								.getText());
+						if (ok == JOptionPane.CANCEL_OPTION)
+							break;
 
-						// Get how many users are joined
-						usersJoined = manager.getEventByID(hashCode)
-								.getListOfUsers().length;
-						joinedSouth.setText("" + usersJoined);
+						else if (ok == JOptionPane.OK_OPTION
+								&& !userName.getText().equals("")) {
+
+							// Get the event and add the user to the event
+							(manager.getEventByID(hashCode)).addUser(userName
+									.getText());
+
+							// Get how many users are joined
+							usersJoined = manager.getEventByID(hashCode)
+									.getListOfUsers().length;
+							joinedSouth.setText("" + usersJoined);
+						}
 					}
 				}
 			}
