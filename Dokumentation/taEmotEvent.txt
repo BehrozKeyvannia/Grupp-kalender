@@ -1,0 +1,23 @@
+Klass: taEmotEvent
+
+Beskrivning: 
+
+Klassen har hand om kommunikationen mellan olika portar. Klassen ska kunna skicka och ta emot (datagram) events och visualisera ett event mellan två anknytande användare på samma kalender. Eventen ska färgas av själva klassen och två använda ska kunna se eventen framför sig på olika datorer. Klassen är uppdelade i två subklasser, en som tar emot och en som skickar. 
+
+
+Instansvariabler: 
+
+-  taEmotsocket : DatagramSocket
+- port : final static int
+- packet : DatagramPacket
+- iadr : InetAddress
+
+Metoder: 
+
++ taEmotEvent() : void
++ acceptEvent() : void 
++ declineEvent() : void 
+Vad mer behövs?
+
+
+
