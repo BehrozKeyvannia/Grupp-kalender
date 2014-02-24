@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.lang.Exception;
 
 /**
  * Filehandler for EventManager
@@ -27,9 +30,9 @@ public class FileHandler
         }
 
         catch(Exception e) {
-            System.out.println("Unable to find the file: Events.txt");   //FÖRSLAG: kanske använda "e.getMessage()" för att faktiskt få undantagets meddelande ... gäller alla undantag
+           System.out.println(e.getMessage());  //FÖRSLAG: kanske använda "e.getMessage()" för att faktiskt få undantagets meddelande ... gäller alla undantag
 
-//Ännu ett förslag: Man kan använda JOptionPane.showMessageDialog() får att få upp en ny ruta med meddelandet
+           //Ännu ett förslag: Man kan använda JOptionPane.showMessageDialog() får att få upp en ny ruta med meddelandet
         } 
     }
 
@@ -41,7 +44,7 @@ public class FileHandler
             restore.close();
         }
         catch(Exception e) {
-            System.out.println("Unable to find the file: Events.txt");
+           System.out.println(e.getMessage());   
         }
         return savedEventList;
     }
