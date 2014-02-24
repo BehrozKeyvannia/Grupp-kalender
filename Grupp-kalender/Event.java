@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
+
 /**
  * Create an event and its' contends.
  * 
@@ -24,20 +25,19 @@ public class Event implements Comparable<Event> {
 
 	/**
 	 * Create an event by user inputs
-	 * 
 	 * @param userName
 	 * @param title
 	 * @param date
 	 * @param startTime
 	 * @param endTime
 	 * @param description
-	 * @throws ParseException
+	 * @throws ParseException 
 	 */
 	public Event(String userNames, String title, String date, String startTime,
 			String endTime, String description) {
-		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		formatter =  new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		try {
-			this.date2 = (Date) formatter.parse(date + " " + startTime);
+			this.date2 = (Date) formatter.parse(date+" "+startTime);
 		} catch (ParseException e) {
 
 		}
@@ -59,19 +59,19 @@ public class Event implements Comparable<Event> {
 	}
 
 	public void setDate(String newDate) {
-		formatter = new SimpleDateFormat("yyyy-MM-dd");
+		formatter =  new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			date2 = (Date) formatter.parse(newDate);
+			date2 =(Date) formatter.parse(newDate);
 		} catch (ParseException e) {
 
 		}
-		date = newDate;
+		date=newDate;
 	}
 
 	public void setStartTime(String newStartTime) {
-		formatter = new SimpleDateFormat("HH:mm");
+		formatter =  new SimpleDateFormat("HH:mm");
 		try {
-			date2 = (Date) formatter.parse(newStartTime);
+			date2 =(Date) formatter.parse(newStartTime);
 		} catch (ParseException e) {
 
 		}
@@ -98,7 +98,7 @@ public class Event implements Comparable<Event> {
 		return date;
 	}
 
-	public Date getDate2() {
+	public Date getDate2(){
 		return date2;
 	}
 
@@ -109,9 +109,9 @@ public class Event implements Comparable<Event> {
 	public String getEndTime() {
 		return endTime;
 	}
-
+	
 	public String getDescription() {
-		return description;
+		return endTime;
 	}
 
 	public String getHTMLString() {
@@ -122,18 +122,18 @@ public class Event implements Comparable<Event> {
 
 	// Must fix specialcase here: If the userToRemove is first in userNames
 	public void removeUser(String userToRemove) {
-		userNames.replace("," + userToRemove, "");
-		userNames.replace(userToRemove + ",", "");
+		userNames = userNames.replace("," + userToRemove, "");
+		userNames = userNames.replace(userToRemove + ",", "");
 	}
 
 	public void addUser(String userToAdd) {
-		if (userNames == null || userNames.equals(""))
-			userNames = userToAdd;
+		if(userNames==null || userNames.equals(""))
+			userNames=userToAdd;
 		else
 			userNames += ("," + userToAdd);
 	}
 
-	// Must fix inparameter control.
+	//Must fix inparameter control.
 	@Override
 	public int compareTo(Event o) {
 		return getDate2().compareTo(o.getDate2());
