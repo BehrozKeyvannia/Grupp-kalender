@@ -1,0 +1,32 @@
+Klass: GuiOrg
+
+Instansvariabler:
+
+private JPanel pan
+private GuiEvent[] b
+private int i
+private EventManager mang
+private String date
+private String weekDay
+
+Beskrivning:
+
+Klassen tar in en EventManager som inparameter och har hand om det visuella visande av paneler. Klassen funkar som en organiserande GUI klass.
+
+Konstruktor:
+public GUI()
+Initerar värden och paneler. Tar reda pa dagens datum och veckodag.
+
+Metodbeskrivningar:
+
+public void newEventJButton(Event DasEvent)
+Metod som tar in ett Event och skapar en aktivt lyssnade GuiEvent pa fönstret med Eventets info
+
+public void newEventWindow()
+Skapar ett nytt popupfönster med alla inmatningsrutor för ett nytt event och gör ett nytt event med den infon.
+
+private bool controlInput()
+Hjälpmetod till newEventWindow som kollar om inmatningsvärdena är korrekta.
+
+
+

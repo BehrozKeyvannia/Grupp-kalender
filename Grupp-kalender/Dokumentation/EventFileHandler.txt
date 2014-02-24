@@ -1,0 +1,16 @@
+FileHandler
+Har hand om sparningen av events och h�mtningen av sparade events.
+
+Har två metoder:
+    public void writeFile(LinkedList<Event> eventList)
+    // den här metoden tar in eventList från EventManager och sparar eventList som ett objekt i en fil (events.sav)
+    
+    
+    public LinkedList<Event> readFile()
+    //den här metoden läser in det sparade objektet(eventList) och returnerar eventList. Anropas från EventManager.
+    
+    
+    PS. Jag har ändrat koden så att jag, för tillfället, endast använder mig utav en instansvariabel
+    
+instansvariabel:
+    private LinkedList savedEventList;

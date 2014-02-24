@@ -1,0 +1,38 @@
+KLASS: EventManager
+
+Beskrivning:
+
+Klassen EventManager är den som ska hålla koll på alla events som existerar och ge ett ID till varje Event-objekt av klassen som skapas/läggs till.
+Den här klassen ansvarar helt och hållet för alla events och ifall det ska ske någon ändring eller radering av ett event, sköts detta via EventManager.
+Ingen annan klass får ha någon form av ansvar över inkommande events eller liknande, detta för att minska kohesion och koppling.
+Klassen har en hashmap för användarnamn som är länkad med anknytande event till användarnamnet.
+Hashmappen kallas hmap. Likaså finns det en lista på alla events som kallas eventList.
+
+Instansvariabler: 
+private HashMap<String, LinkedList<Event>> hMap - Låter varje användare spara Event i en LinkedList. Eventen i listorna kmr vara referenser till Eventen i eventList(nedan)
+private LinkedList<Event> eventList  - En lista där ALLA events sparas
+int eventID = 0 - En räknare som sätter alla Events ID
+
+Metoder: 
+
+Event: createEvent(Alla inparametrar för att skapa ett event(förutom EventID). Se Eventklassen.)  == En metod som skapar ett event och metoden kräver inparameterar för att instansiera ett event. 
+Inparametrar är username, titel, start-tid, slut-tid.
+Metoden använder sig av räknar-instantsvariabeln eventID som ger ett unikt nummer till varje Event får, varje gång den skapas.
+ Detta unika nummer kallas vi för ID. Varje gång ett event har skapats, kommer räknaren att incrementeras. 
+
+void: addEvent(Event e) == Metoden tar existerande objekt av klassen Event och lägger till i hashmappen (hmap). 
+
+void:addEvent(Event[]e) == Metoden tar in en array av objekt av klassen Event, ändrar deras eventID till (instansvariabeln eventID + 1) och lägger in det i hmap (Använd er av ovanstående metod här)
+
+Event: getEvent(String user,int ID) == Metoden tar namnet på användaren och det ID till eventet som man vill ha. Metoden hämtar Eventet från hMap (inte ifrån EventList) och returnerar det som ett ”Event”.
+Returnera värdet null om det inte finns
+
+Event: getEvent(int ID) == Metoden ID till eventet som man vill ha. Metoden hämtar Eventet från listan EventList (inte ifrån hMap) genom att ta index nr och returnerar det som ett ”Event”.
+Returnera värdet null om det inte finns
+
+void: RemoveEvent(String user,int eventID) == Metod som tar bort referensen till Eventet med angivna id från user's Lista i hMap. Metoden ska även ta bort users namn från eventet
+
+void: RemoveEvent(int eventID) == Metod som kollar om String arrayen users är en tom. Om sant så tar den bort Event med angivna id från EventList.
+
+
+
