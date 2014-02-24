@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.Iterator;
 
 import javax.swing.*;
@@ -225,10 +226,11 @@ public class GuiOrg extends JFrame implements ActionListener {
 			newEventWindow();
 
 		else if (e.getSource() == menuItemA3)
-			removeAllEvents();
+			System.out.println("Done something, don't know what it will be");
 
 		else if (e.getSource() == menuItemB1)
-			System.out.println("You want to do exit");
+			//Store the events before exit
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 
 	public static void main(String[] arg) {
