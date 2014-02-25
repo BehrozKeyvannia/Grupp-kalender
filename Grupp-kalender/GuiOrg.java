@@ -1,16 +1,20 @@
 package GUI;
 
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.Iterator;
+import java.util.Observer;
+import java.util.Observable;
 
 import javax.swing.*;
 
-import Engine.Event;
-import Engine.EventManager;
+import Engine.*;
+
+// import Engine.Event;
+// import Engine.EventManager;
 
 /**
  * 
@@ -18,7 +22,7 @@ import Engine.EventManager;
  * 
  */
 @SuppressWarnings("serial")
-public class GuiOrg extends JFrame implements ActionListener {
+public class GuiOrg extends JFrame implements ActionListener , Observer {
 
 	private EventManager manager;
 	private JMenuBar menuBarNorth = new JMenuBar();
@@ -117,14 +121,25 @@ public class GuiOrg extends JFrame implements ActionListener {
 	 * @param eventIterator
 	 *            The iterator that will be used to create the new events
 	 */
-	public void createEventsIterator(Iterator<Event> eventIterator) {
-
-		Event tempEvent = eventIterator.next();
+	public void createEventsIterator(Iterator<Event> eventIterator) {  
 		while (eventIterator.hasNext()) {
-			GuiEvent guiEvent = new GuiEvent(tempEvent.hashCode(), manager);
-			addNewEvent(guiEvent);
+			addNewEvent(new GuiEvent(eventIterator.next().hashCode(), manager));
 		}
 	}
+	//     /**
+	//      * Create new GUI events for a collection of Iterator
+	//      * 
+	//      * @param eventIterator
+	//      *            The iterator that will be used to create the new events
+	//      */
+	//     public void createEventsIterator(Iterator<Event> eventIterator) {
+	// 
+	//         Event tempEvent = eventIterator.next();
+	//         while (eventIterator.hasNext()) {
+	//             GuiEvent guiEvent = new GuiEvent(tempEvent.hashCode(), manager);
+	//             addNewEvent(guiEvent);
+	//         }
+	//     }
 
 	/**
 	 * Create an input row to get the new event information from the user
@@ -202,16 +217,16 @@ public class GuiOrg extends JFrame implements ActionListener {
 
 			else {
 
-				int tempHashCode = manager.addEvent(
+				//int tempHashCode = 
+				manager.addEvent(
 						manager.createNewEvent(userField.getText(),
 								titleField.getText(), dateField.getText(),
 								startField.getText(), endField.getText(),
 								descriptionField.getText())).hashCode();
-
 				// Create GuiEvent and pass hash code to it
-				GuiEvent guiEvent = new GuiEvent(tempHashCode, manager);
+				//GuiEvent guiEvent = new GuiEvent(tempHashCode, manager);
 
-				this.addNewEvent(guiEvent); // Add this event to GUI
+				//this.addNewEvent(guiEvent); // Add this event to GUI
 				break;
 			}
 		}
@@ -226,16 +241,26 @@ public class GuiOrg extends JFrame implements ActionListener {
 			newEventWindow();
 
 		else if (e.getSource() == menuItemA3)
-			System.out.println("Done something, don't know what it will be");
+			removeAllEvents();
 
 		else if (e.getSource() == menuItemB1)
-			//Store the events before exit
-			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+			System.out.println("You want to do exit");
+	}
+	@Override
+	public void update(Observable obs, Object obj)
+	{
+		if (obs == manager)
+		{
+			removeAllEvents();
+			createEventsIterator(manager.getEventListIterator());
+		}
 	}
 
 	public static void main(String[] arg) {
 		EventManager manager = new EventManager();
 		GuiOrg org = new GuiOrg(manager);
+
+		manager.addObserver(org);
 
 	}
 }
