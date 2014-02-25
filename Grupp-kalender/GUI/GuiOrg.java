@@ -254,12 +254,4 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 			createEventsIterator(manager.getEventListIterator());
 		}
 	}
-	/*
-	 * public static void main(String[] arg) { EventManager manager = new
-	 * EventManager(); GuiOrg org = new GuiOrg(manager);
-	 * 
-	 * manager.addObserver(org);
-	 * 
-	 * }
-	 */
 }

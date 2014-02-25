@@ -23,19 +23,11 @@ public class Main {
 	 */
 	public static void main(String[] args) throws Exception, Throwable {
 		
-		try{
-			//ClientHandle handle = new ClientHandle();
-			FileHandler fileHandler = new FileHandler();
-			EventManager manager = new EventManager();
-			//GuiOrg org = new GuiOrg(manager);
-			
-			EventCom com = new EventCom(manager.getEventList());
-			
-		} catch(IOException e )
-		
-		{
-			System.out.println(e.getMessage());
-		}
+		//ClientHandle handle = new ClientHandle();
+		//FileHandler fileHandler = new FileHandler();
+		//EventCom com = new EventCom(manager.getEventList());
+		EventManager manager = new EventManager();
+		GuiOrg org = new GuiOrg(manager);
 		
 
 	}

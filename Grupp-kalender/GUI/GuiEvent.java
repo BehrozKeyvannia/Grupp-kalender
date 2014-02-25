@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.util.Observable;
 
 import Engine.EventManager;
 
@@ -23,7 +22,7 @@ import Engine.EventManager;
  */
 @SuppressWarnings("serial")
 public class GuiEvent extends JPanel {
-	
+
 	private JTextField titleNorth = new JTextField("noTitle");
 	private JTextField dateEast = new JTextField("noDate");
 	private JTextField descriptionCenter = new JTextField("noDescription");
@@ -54,7 +53,7 @@ public class GuiEvent extends JPanel {
 
 		this.manager = manager;
 		this.hashCode = hashCode;
-		
+
 		titleNorth.setText(manager.getEventByID(hashCode).getTitle());
 		dateEast.setText(manager.getEventByID(hashCode).getDate());
 		startTimeWest.setText(manager.getEventByID(hashCode).getStartTime());
