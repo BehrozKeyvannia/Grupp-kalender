@@ -95,8 +95,8 @@ public class GuiEvent extends JPanel {
 	}
 
 	/**
-	 * Add action listener to join button and increment joined field if joined
-	 * clicked. set joined editable to false
+	 * Add action listener to join button. Ask for a user to join and increment
+	 * joined.
 	 */
 	private void AddListenerToJoin() {
 		joinSouth.addActionListener(new ActionListener() {
@@ -120,8 +120,9 @@ public class GuiEvent extends JPanel {
 
 							// Get how many users are joined
 							usersJoined = manager.getEventByID(hashCode)
-									.getListOfUsers().length;
+									.getListOfUsers().length - 1;
 							joinedSouth.setText("" + usersJoined);
+							break;
 						}
 					}
 				}
