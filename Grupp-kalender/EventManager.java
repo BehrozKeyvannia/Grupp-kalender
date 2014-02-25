@@ -82,6 +82,10 @@ public class EventManager {
 	public Event getEventByID(int hashCode) {
 		return searchEvent(eventList, hashCode);
 	}
+	
+	public Iterator<Event> getEventListIterator(){
+		return eventList.iterator();
+	}
 
 	private Event searchEvent(LinkedList<Event> list, int hashCode) {
 		Event tempEvent;
@@ -110,15 +114,5 @@ public class EventManager {
 			if (eventList.contains(temp))
 				eventList.remove(temp);
 		}
-	}
-	public static void main(String[] arg) {
-		EventManager e= new EventManager();
-		e.addEvent(e.createNewEvent("Rami,Behroz,Akar", "Go fuck yourself", "2014-05-14", "20:00", "21:00", "Bajsa"));
-		e.addEvent(e.createNewEvent("Rami", "Shittin", "2014-05-13", "20:00", "21:00", "Promenad"));
-		e.addEvent(e.createNewEvent("Behroz", "pppfffffft", "2014-05-15", "20:00", "21:00", "Hälsa"));
-		e.addEvent(e.createNewEvent("Ashor,Stefan", "Haj Haj", "2014-05-12", "20:30", "21:00", "Plugga"));
-		int hash = e.addEvent(e.createNewEvent("Josef Stalin,Hitler,Mao", "Conquering world", "2014-05-12", "20:20", "21:00", "Sending people to Gulag")).hashCode();
-		e.sortEventList();
-		e.removeEvent(hash);
 	}
 }
