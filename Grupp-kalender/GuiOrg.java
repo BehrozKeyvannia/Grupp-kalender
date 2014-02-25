@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Observer;
 import java.util.Observable;
@@ -23,7 +25,7 @@ import Engine.*;
  */
 @SuppressWarnings("serial")
 public class GuiOrg extends JFrame implements ActionListener , Observer {
-
+	
 	private EventManager manager;
 	private JMenuBar menuBarNorth = new JMenuBar();
 	private Container eventCenter = new Container();
@@ -38,6 +40,9 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 	// For the eventCenter container
 	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
 	int i = 0;
+	
+	//Todays date
+	Date date;
 
 	/**
 	 * Construct the whole GUI
@@ -51,6 +56,10 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 
 		createMenu();
 
+		date = new Date();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		String datum = format1.format(date);
+		
 		eventCenter.setLayout(box);
 		this.add(eventCenter);
 
@@ -109,7 +118,7 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 	/**
 	 * Remove all the GUI Events from the screen
 	 */
-	private void removeAllEvents() {
+	private void clear() {
 
 		eventCenter.removeAll();
 		this.pack();
@@ -123,23 +132,11 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 	 */
 	public void createEventsIterator(Iterator<Event> eventIterator) {  
 		while (eventIterator.hasNext()) {
-			addNewEvent(new GuiEvent(eventIterator.next().hashCode(), manager));
+			Event temp = eventIterator.next();
+			if(date.compareTo(temp.getDate2())<0)
+				addNewEvent(new GuiEvent(temp.hashCode(), manager));
 		}
 	}
-	//     /**
-	//      * Create new GUI events for a collection of Iterator
-	//      * 
-	//      * @param eventIterator
-	//      *            The iterator that will be used to create the new events
-	//      */
-	//     public void createEventsIterator(Iterator<Event> eventIterator) {
-	// 
-	//         Event tempEvent = eventIterator.next();
-	//         while (eventIterator.hasNext()) {
-	//             GuiEvent guiEvent = new GuiEvent(tempEvent.hashCode(), manager);
-	//             addNewEvent(guiEvent);
-	//         }
-	//     }
 
 	/**
 	 * Create an input row to get the new event information from the user
@@ -216,17 +213,11 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 				break;
 
 			else {
-
-				//int tempHashCode = 
 				manager.addEvent(
 						manager.createNewEvent(userField.getText(),
 								titleField.getText(), dateField.getText(),
 								startField.getText(), endField.getText(),
 								descriptionField.getText())).hashCode();
-				// Create GuiEvent and pass hash code to it
-				//GuiEvent guiEvent = new GuiEvent(tempHashCode, manager);
-
-				//this.addNewEvent(guiEvent); // Add this event to GUI
 				break;
 			}
 		}
@@ -241,7 +232,7 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 			newEventWindow();
 
 		else if (e.getSource() == menuItemA3)
-			removeAllEvents();
+			clear();
 
 		else if (e.getSource() == menuItemB1)
 			System.out.println("You want to do exit");
@@ -251,7 +242,7 @@ public class GuiOrg extends JFrame implements ActionListener , Observer {
 	{
 		if (obs == manager)
 		{
-			removeAllEvents();
+			clear();
 			createEventsIterator(manager.getEventListIterator());
 		}
 	}

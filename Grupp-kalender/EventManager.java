@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 
 /**
@@ -99,7 +100,7 @@ public class EventManager extends Observable{
                 return tempEvent;
         }
         // Inget event hittas returnas null
-        return null;
+        throw new NoSuchElementException();
     }
 
     public void removeUserFromEvent(String user, int hashCode) {
