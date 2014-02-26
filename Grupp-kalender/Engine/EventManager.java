@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Observable;
 
+import Com.FileHandler;
+
 /**
  * Manage the events
  * 
@@ -15,6 +17,7 @@ import java.util.Observable;
 public class EventManager extends Observable {
 	private HashMap<String, LinkedList<Event>> hMap;
 	private LinkedList<Event> eventList;
+	private FileHandler fileHandler = new FileHandler();
 
 	/**
 	 * Constructor for objects of class EventManager
@@ -134,4 +137,13 @@ public class EventManager extends Observable {
 		sortEventList();
 		return eventList.iterator();
 	}
+	public void saveEvents()
+    {
+        fileHandler.writeFile(eventList);
+    }
+    
+    public void readEvents()
+    {
+        eventList = fileHandler.readFile(); //FÅR ENDAST ANVÄNDAS VID APPLIKATIONENS START
+    }
 }

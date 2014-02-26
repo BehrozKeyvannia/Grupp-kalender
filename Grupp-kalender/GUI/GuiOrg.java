@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Observer;
 import java.util.Observable;
 
 import javax.swing.*;
 
+import Com.EventCom;
 import Engine.*;
 
 // import Engine.Event;
@@ -33,6 +35,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private JMenuItem menuItemA2;
 	private JMenuItem menuItemA3;
 	private JMenuItem menuItemB1;
+	private EventCom com;
 
 	// For the eventCenter container
 	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
@@ -42,7 +45,8 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	 * Construct the whole GUI
 	 */
 	public GuiOrg(EventManager manager) {
-
+		
+		
 		this.manager = manager;
 		this.setTitle("To do list");
 		this.getContentPane();
@@ -241,10 +245,20 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 			newEventWindow();
 
 		else if (e.getSource() == menuItemA3)
-			removeAllEvents();
-
+			try {
+				com = new EventCom(manager.getEventList());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Throwable e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		else if (e.getSource() == menuItemB1)
-			System.out.println("You want to do exit");
+			manager.saveEvents();
 	}
 
 	@Override
