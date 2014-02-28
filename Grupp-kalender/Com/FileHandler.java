@@ -15,8 +15,10 @@ import java.lang.Exception;
 public class FileHandler
 {
     /*
-* A constructor for FileHandler
-*/
+     * A method for writing(saving) eventList to a file
+     * 
+     * @param the eventList object to save
+     */
     public static void writeFile(LinkedList<Event> eventList)
     {
         try {
@@ -32,6 +34,11 @@ public class FileHandler
         }
     }
 
+    /*
+     * A method for reading eventList from a file
+     * 
+     * @return returns the eventList object
+     */
     public static LinkedList<Event> readFile()
     {
     	LinkedList<Event> readObject = null;
