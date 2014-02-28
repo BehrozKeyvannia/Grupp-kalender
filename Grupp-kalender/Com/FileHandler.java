@@ -2,6 +2,7 @@ package Com;
 
 import java.io.*;
 import java.util.*;
+
 import Engine.Event;
 import java.lang.Exception;
 
@@ -13,16 +14,10 @@ import java.lang.Exception;
 */
 public class FileHandler
 {
-    private LinkedList<Event> savedEventList;
     /*
 * A constructor for FileHandler
 */
-    public FileHandler()
-    {
-
-    }
-
-    public void writeFile(LinkedList<Event> eventList)
+    public static void writeFile(LinkedList<Event> eventList)
     {
         try {
             ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("events.sav"));
@@ -37,17 +32,18 @@ public class FileHandler
         }
     }
 
-    public LinkedList<Event> readFile()
+    public static LinkedList<Event> readFile()
     {
+    	LinkedList<Event> readObject = null;
         try {
             ObjectInputStream restore = new ObjectInputStream(new FileInputStream("events.sav"));
-            savedEventList = (LinkedList<Event>)restore.readObject();
+            readObject = (LinkedList<Event>)restore.readObject();
             restore.close();
         }
         catch(Exception e) {
            System.out.println(e.getMessage());
         }
-        return savedEventList;
+		return readObject;
     }
 
 }

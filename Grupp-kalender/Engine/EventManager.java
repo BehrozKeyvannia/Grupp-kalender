@@ -1,6 +1,7 @@
 package Engine;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,7 +18,6 @@ import Com.FileHandler;
 public class EventManager extends Observable {
 	private HashMap<String, LinkedList<Event>> hMap;
 	private LinkedList<Event> eventList;
-	private FileHandler fileHandler = new FileHandler();
 
 	/**
 	 * Constructor for objects of class EventManager
@@ -25,6 +25,7 @@ public class EventManager extends Observable {
 	public EventManager() {
 		hMap = new HashMap<String, LinkedList<Event>>();
 		eventList = new LinkedList<Event>();
+		readEvents();
 	}
 
 	/**
@@ -124,13 +125,36 @@ public class EventManager extends Observable {
 			for (int i = 0; i < list.length; i++) {
 				removeUserFromEvent(list[i], hashCode);
 			}
-			if (!eventList.contains(temp)) {
+			if (eventList.contains(temp)) {
 				eventList.remove(temp);
 				setChanged();
 				notifyObservers();
 			}
 
 		}
+	}
+	public void removeAllEvents(){
+		for (LinkedList<Event> list : hMap.values()) {
+		    list.clear();
+		}
+		eventList.clear();
+		setChanged();
+		notifyObservers();
+	}
+	public void removePastEvents(){
+		Iterator<Event> iterator = getEventListIterator();
+		Date date = new Date();
+		while(iterator.hasNext()){
+			Event temp = iterator.next();
+			if(date.compareTo(temp.getDate2())<0)
+				break;
+			String[] x = temp.getListOfUsers();
+			for(int i =0;i<x.length;i++)
+				removeUserFromEvent(x[i],temp.hashCode());
+			iterator.remove();
+				
+		}
+			
 	}
 
 	public Iterator<Event> getEventListIterator() {
@@ -139,11 +163,13 @@ public class EventManager extends Observable {
 	}
 	public void saveEvents()
     {
-        fileHandler.writeFile(eventList);
+		FileHandler.writeFile(eventList);
     }
     
     public void readEvents()
     {
-        eventList = fileHandler.readFile(); //FÅR ENDAST ANVÄNDAS VID APPLIKATIONENS START
+    	LinkedList<Event> control = FileHandler.readFile();
+    	if(control!=null)
+    		addEventList(control); //FÅR ENDAST ANVÄNDAS VID APPLIKATIONENS START
     }
 }

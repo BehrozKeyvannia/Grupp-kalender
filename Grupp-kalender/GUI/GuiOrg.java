@@ -2,9 +2,12 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Observer;
 import java.util.Observable;
@@ -34,25 +37,31 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private JMenuItem menuItemA1;
 	private JMenuItem menuItemA2;
 	private JMenuItem menuItemA3;
+	private JMenuItem menuItemA4;
 	private JMenuItem menuItemB1;
 	private EventCom com;
 
 	// For the eventCenter container
 	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
 	int i = 0;
+	private Date date;
 
 	/**
 	 * Construct the whole GUI
 	 */
 	public GuiOrg(EventManager manager) {
-		
-		
+
+
 		this.manager = manager;
 		this.setTitle("To do list");
 		this.getContentPane();
 		this.setLayout(border);
 
 		createMenu();
+
+		date = new Date();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		String datum = format1.format(date);
 
 		eventCenter.setLayout(box);
 		this.add(eventCenter);
@@ -61,7 +70,10 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		border.addLayoutComponent(eventCenter, BorderLayout.CENTER);
 
 		setVisible(true);
+		setPreferredSize(new Dimension(500,500));
 		pack();
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		update(manager,null);
 	}
 
 	/**
@@ -75,25 +87,30 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		menuItemA1 = new JMenuItem("Create new Event");
 		menuItemA1.addActionListener(this);
 
-		menuItemA2 = new JMenuItem("");
+		menuItemA2 = new JMenuItem("Network!");
+		menuItemA2.addActionListener(this);
 
-		menuItemA3 = new JMenuItem("Remove all events");
+		menuItemA3 = new JMenuItem("Remove all past events");
 		menuItemA3.addActionListener(this);
+		
+		menuItemA4 = new JMenuItem("Remove all events");
+		menuItemA4.addActionListener(this);
 
 		File.add(menuItemA1);
 		File.add(menuItemA2);
 		File.addSeparator();
 		File.add(menuItemA3);
+		File.add(menuItemA4);
 
 		menuBarNorth.add(File);
 
-		JMenu menuB = new JMenu("Quit...");
-		menuItemB1 = new JMenuItem("Exit");
+		JMenu menuB = new JMenu("Save File");
+		menuItemB1 = new JMenuItem("Save");
 		menuItemB1.addActionListener(this);
 		menuB.add(menuItemB1);
 
 		menuBarNorth.add(menuB);
-		this.add(menuBarNorth);
+		add(menuBarNorth);
 	}
 
 	/**
@@ -105,17 +122,17 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	public void addNewEvent(GuiEvent event) {
 
 		eventCenter.add(event);
-		this.add(eventCenter);
-		this.pack();
+		add(eventCenter);
+		pack();
 	}
 
 	/**
 	 * Remove all the GUI Events from the screen
 	 */
-	private void removeAllEvents() {
+	private void clear() {
 
 		eventCenter.removeAll();
-		this.pack();
+		pack();
 	}
 
 	/**
@@ -126,24 +143,12 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	 */
 	public void createEventsIterator(Iterator<Event> eventIterator) {
 		while (eventIterator.hasNext()) {
-			addNewEvent(new GuiEvent(eventIterator.next().hashCode(), manager));
+			Event temp = eventIterator.next();
+			if(date.compareTo(temp.getDate2())<0)
+				addNewEvent(new GuiEvent(temp.hashCode(), manager));
 		}
 	}
 
-	// /**
-	// * Create new GUI events for a collection of Iterator
-	// *
-	// * @param eventIterator
-	// * The iterator that will be used to create the new events
-	// */
-	// public void createEventsIterator(Iterator<Event> eventIterator) {
-	//
-	// Event tempEvent = eventIterator.next();
-	// while (eventIterator.hasNext()) {
-	// GuiEvent guiEvent = new GuiEvent(tempEvent.hashCode(), manager);
-	// addNewEvent(guiEvent);
-	// }
-	// }
 
 	/**
 	 * Create an input row to get the new event information from the user
@@ -195,44 +200,38 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 							"Please enter what is needed",
 							JOptionPane.OK_CANCEL_OPTION);
 
-			// Check that user name is entered
-			if (result == JOptionPane.OK_OPTION
-					&& userField.getText().equals(""))
-				JOptionPane.showMessageDialog(null, "Please enter a user name");
+			if (result == JOptionPane.OK_OPTION){
+				// Check that user name is entered
+				if (userField.getText().equals(""))
+					JOptionPane.showMessageDialog(null, "Please enter a user name");
 
-			// Check for date format input is correct entered
-			if (result == JOptionPane.OK_OPTION
-					&& !dateField.getText().matches(
-							("(\\d{4}+)(-{1}+)(\\d{2}+)(-{1}+)(\\d{2}+)")))
-				JOptionPane.showMessageDialog(null,
-						"Please enter day as yyyy-mm-dd format");
+				// Check for date format input is correct entered
+				else if (!dateField.getText().matches(
+						("(\\d{4}+)(-{1}+)(\\d{2}+)(-{1}+)(\\d{2}+)")))
+					JOptionPane.showMessageDialog(null,
+							"Please enter day as yyyy-mm-dd format");
 
-			// Check to see that time format is correct
-			else if (result == JOptionPane.OK_OPTION
-					&& (!startField.getText().matches(
-							("(\\d{2}+)(:{1}+)(\\d{2}+)")) || !endField
-							.getText().matches(("(\\d{2}+)(:{1}+)(\\d{2}+)"))))
-				JOptionPane.showMessageDialog(null,
-						"Please enter time as hh-mm format");
-
+				// Check to see that time format is correct
+				else if (!startField.getText().matches(
+						("(\\d{2}+)(:{1}+)(\\d{2}+)")) || !endField
+						.getText().matches(("(\\d{2}+)(:{1}+)(\\d{2}+)")))
+					JOptionPane.showMessageDialog(null,
+							"Please enter time as hh-mm format");
+				else {
+					manager.addEvent(
+							manager.createNewEvent(userField.getText(),
+									titleField.getText(), dateField.getText(),
+									startField.getText(), endField.getText(),
+									descriptionField.getText())).hashCode();
+					break;
+				}
+			}
 			// If canceled then exit
 			else if (result == JOptionPane.CANCEL_OPTION)
 				break;
-
-			else {
-
-				// int tempHashCode =
-				manager.addEvent(
-						manager.createNewEvent(userField.getText(),
-								titleField.getText(), dateField.getText(),
-								startField.getText(), endField.getText(),
-								descriptionField.getText())).hashCode();
-				// Create GuiEvent and pass hash code to it
-				// GuiEvent guiEvent = new GuiEvent(tempHashCode, manager);
-
-				// this.addNewEvent(guiEvent); // Add this event to GUI
+			else
 				break;
-			}
+			
 		}
 	}
 
@@ -244,7 +243,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		if (e.getSource() == menuItemA1)
 			newEventWindow();
 
-		else if (e.getSource() == menuItemA3)
+		else if (e.getSource() == menuItemA2)
 			try {
 				com = new EventCom(manager.getEventList());
 			} catch (IOException e1) {
@@ -257,14 +256,19 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		else if (e.getSource() == menuItemA3)
+			manager.removePastEvents();
+		else if (e.getSource() == menuItemA4)
+			manager.removeAllEvents();
 		else if (e.getSource() == menuItemB1)
 			manager.saveEvents();
+
 	}
 
 	@Override
 	public void update(Observable obs, Object obj) {
 		if (obs == manager) {
-			removeAllEvents();
+			clear();
 			createEventsIterator(manager.getEventListIterator());
 		}
 	}
