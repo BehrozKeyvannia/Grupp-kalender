@@ -39,7 +39,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private JMenuItem menuItemA3;
 	private JMenuItem menuItemA4;
 	private JMenuItem menuItemB1;
-	private EventCom com;
+	private EventCom  com;
 
 	// For the eventCenter container
 	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
@@ -53,6 +53,18 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 
 
 		this.manager = manager;
+		try {
+			this.com = new EventCom(manager.getEventList());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setTitle("To do list");
 		this.getContentPane();
 		this.setLayout(border);
@@ -244,25 +256,13 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 			newEventWindow();
 
 		else if (e.getSource() == menuItemA2)
-			try {
-				com = new EventCom(manager.getEventList());
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (Throwable e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			manager.addEventList(com.serverOrClient());
 		else if (e.getSource() == menuItemA3)
 			manager.removePastEvents();
 		else if (e.getSource() == menuItemA4)
 			manager.removeAllEvents();
 		else if (e.getSource() == menuItemB1)
 			manager.saveEvents();
-
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class ClientHandle implements Runnable {
 		this.clientSocket = s;
 		this.socketList = socketList;
 		streamIn = new DataInputStream(clientSocket.getInputStream());
-		streamOut = new DataOutputStream(clientSocket.getOutputStream());
+		//streamOut = new DataOutputStream(clientSocket.getOutputStream());
 		aktivitet.start();
 	}
 
@@ -36,10 +36,10 @@ public class ClientHandle implements Runnable {
 																			// client
 				LinkedList<Event> eventList = (LinkedList<Event>) ois
 						.readObject();
-				if (eventList != null)
+				if (eventList == null)
 					break;
 				for (Socket s : socketList) { // Send it to all of clients which
-												// is connected
+					streamOut = new DataOutputStream(s.getOutputStream());							// is connected
 					ObjectOutputStream oos = new ObjectOutputStream(streamOut);
 					oos.writeObject(eventList);
 					oos.close();
@@ -47,8 +47,11 @@ public class ClientHandle implements Runnable {
 				ois.close();
 				streamIn.close();
 				streamOut.close();
-			} catch (IOException | ClassNotFoundException e) {
+			} catch (IOException e) {
 				break;
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

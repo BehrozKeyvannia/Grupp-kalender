@@ -13,56 +13,46 @@ import Engine.Event;
  * Date: 2014-02-19
  * InAndOut: LinkedList<Event>
  * OBS ! 1-  Port in the server will be 9999
- *       2- Port in clients will be 9963
- *       3- IP address in the server will be 69.122.0.1
+ *       2- Port in clients can be whatever
+ *       3- IP address in the server will be 192.168.1.1
  *       4- Objects must be serializable 
  *       5- When will be close client and server sockets ? 
  */
 public class EventCom {
 	private static int listenerPort = 9999;
-	private static String serverInetAdr = "69.122.0.1";
+	private static String serverInetAdr = "192.168.1.6";
 	private ArrayList<Socket> socketList;
-	private LinkedList<Event> eventList;
-
+	private LinkedList<Event> eventList; 
+	
 	// Constructors
 	public EventCom(LinkedList<Event> eventList) throws IOException, Exception,
 			Throwable {
 		socketList = new ArrayList<Socket>();
 		this.eventList = eventList;
-		serverOrClient();
 	}
 
 	// Choose between server and client side
-	private void serverOrClient() {
+	public LinkedList<Event> serverOrClient() {
 		try {
-			if (InetAddress.getLocalHost().getHostAddress()
-					.equals(serverInetAdr)) // Is this server's socket?
+			if (InetAddress.getLocalHost().getHostAddress().equals(serverInetAdr)) // Is this server's socket?
 				serverSide();
 			else
-				clientSide(eventList);
+				return clientSide(eventList);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	// Server side method
 	private void serverSide() {
 		try {
-			ServerSocket listenerSocket = new ServerSocket(listenerPort); // Make
-																			// a
-																			// socket
-																			// and
-																			// listen
-																			// to
-																			// clients
+			ServerSocket listenerSocket = new ServerSocket(listenerPort); // Make a socket and listen to clients
+																			
 			while (true) {
-				Socket clientSocket = listenerSocket.accept(); // Wait to next
-																// client
+				Socket clientSocket = listenerSocket.accept(); // Wait to next client			
 				socketList.add(clientSocket); // Save all of client's sockets
-				new ClientHandle(clientSocket, socketList); // Make an active
-															// object from
-															// client
-				// ???? clientSocket.close();
+				new ClientHandle(clientSocket, socketList); // Make an active object of every client
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -71,36 +61,25 @@ public class EventCom {
 	}
 
 	// Client side method
-	private LinkedList<Event> clientSide(LinkedList<Event> eventList) {
-		LinkedList<Event> newEventList = new LinkedList<Event>();
+	@SuppressWarnings("unchecked")
+	public LinkedList<Event> clientSide(LinkedList<Event> eventList) throws ClassNotFoundException {
 		try {
-			Socket clientSo = new Socket(serverInetAdr, listenerPort); // Make a
-																		// connection
-																		// to
-																		// server
-			DataInputStream streamIn = new DataInputStream(
-					clientSo.getInputStream());
-			DataOutputStream streamOut = new DataOutputStream(
-					clientSo.getOutputStream());
-			while (true) {
-				ObjectOutputStream oos = new ObjectOutputStream(streamOut); // Send
-																			// the
-																			// event
-																			// list
-																			// to
-																			// server
-				oos.writeObject(eventList);
-				ObjectInputStream ois = new ObjectInputStream(streamIn); // Receive
-																			// the
-																			// event
-																			// list
-																			// from
-																			// server
-				newEventList = (LinkedList<Event>) ois.readObject();
-			}
-		} catch (IOException | ClassNotFoundException e) {
+			
+			Socket clientSo = new Socket(serverInetAdr, listenerPort); // Make a connection to server
+			DataInputStream streamIn = new DataInputStream(clientSo.getInputStream());
+			DataOutputStream streamOut = new DataOutputStream(clientSo.getOutputStream());
+			
+			System.out.println("I have entered the clientside (1)");
+				ObjectOutputStream oos = new ObjectOutputStream(streamOut); // Send the event list to server
+				oos.writeObject(eventList);															
+				System.out.println("I have sent the object");
+																			
+				
+				ObjectInputStream ois = new ObjectInputStream(streamIn); // Receive the event list from server															
+				return (LinkedList<Event>) ois.readObject();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return newEventList;
+		return null;
 	}
 }
