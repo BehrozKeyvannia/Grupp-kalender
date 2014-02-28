@@ -103,8 +103,8 @@ public class GuiEvent extends JPanel {
 	}
 
 	/**
-	 * Add action listener to all buttons.
-	 * joined.
+	 * Add action listener to join, remove and delete buttons
+	 * 
 	 */
 	private void AddListenerToAll() {
 		joinSouth.addActionListener(new ActionListener() {
