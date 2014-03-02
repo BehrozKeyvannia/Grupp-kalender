@@ -13,9 +13,14 @@ public class ClientHandle implements Runnable {
 	DataInputStream streamIn;
 	DataOutputStream streamOut;
 	private ArrayList<Socket> socketList;
-
+	
+	/**
+	 * Constructor.
+	 * @param s the clients socket to recieve from.
+	 * @param socketlist clientlist of sockets to send to.
+	 */
 	public ClientHandle(Socket s, ArrayList<Socket> socketList)
-			throws IOException { // Contractor
+			throws IOException { 
 		this.clientSocket = s;
 		this.socketList = socketList;
 		streamIn = new DataInputStream(clientSocket.getInputStream());
@@ -23,6 +28,11 @@ public class ClientHandle implements Runnable {
 		aktivitet.start();
 	}
 
+
+	/**
+	 * Clienthandle thread code. Server recieves a list from the client. Server sends the same list + all of the previous lists it has recieved
+	 * + the servers own starting list and sends that to all saved clientsockets in socketList. Finally closes all streams
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
