@@ -20,15 +20,15 @@ import Engine.Event;
  */
 public class EventCom {
 	private static int listenerPort = 9999;
-	private static String serverInetAdr = "192.168.1.6";
+	private static String serverInetAdr = "192.168.1.4";
 	private ArrayList<Socket> socketList;
-	private LinkedList<Event> eventList; 
+	protected static LinkedList<Event> serverEventList = null; 
 	
 	// Constructors
 	public EventCom(LinkedList<Event> eventList) throws IOException, Exception,
 			Throwable {
 		socketList = new ArrayList<Socket>();
-		this.eventList = eventList;
+		EventCom.serverEventList = eventList;
 	}
 
 	// Choose between server and client side
@@ -37,7 +37,7 @@ public class EventCom {
 			if (InetAddress.getLocalHost().getHostAddress().equals(serverInetAdr)) // Is this server's socket?
 				serverSide();
 			else
-				return clientSide(eventList);
+				return clientSide(serverEventList);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -48,10 +48,14 @@ public class EventCom {
 	private void serverSide() {
 		try {
 			ServerSocket listenerSocket = new ServerSocket(listenerPort); // Make a socket and listen to clients
+			System.out.println("1 - I am now a server");
 																			
 			while (true) {
-				Socket clientSocket = listenerSocket.accept(); // Wait to next client			
+				Socket clientSocket = listenerSocket.accept(); // Wait to next client
+				if(!(socketList.contains(clientSocket))){		//If there is not already in the list
 				socketList.add(clientSocket); // Save all of client's sockets
+				System.out.println("2 - I have accepte a client and save socket to my list");
+				}
 				new ClientHandle(clientSocket, socketList); // Make an active object of every client
 			}
 		} catch (Throwable e) {
@@ -65,18 +69,24 @@ public class EventCom {
 	public LinkedList<Event> clientSide(LinkedList<Event> eventList) throws ClassNotFoundException {
 		try {
 			
-			Socket clientSo = new Socket(serverInetAdr, listenerPort); // Make a connection to server
-			DataInputStream streamIn = new DataInputStream(clientSo.getInputStream());
-			DataOutputStream streamOut = new DataOutputStream(clientSo.getOutputStream());
+			Socket clientSocket = new Socket(serverInetAdr, listenerPort); // Make a connection to server
+			DataInputStream streamIn = new DataInputStream(clientSocket.getInputStream());
+			DataOutputStream streamOut = new DataOutputStream(clientSocket.getOutputStream());
 			
-			System.out.println("I have entered the clientside (1)");
-				ObjectOutputStream oos = new ObjectOutputStream(streamOut); // Send the event list to server
-				oos.writeObject(eventList);															
-				System.out.println("I have sent the object");
-																			
-				
-				ObjectInputStream ois = new ObjectInputStream(streamIn); // Receive the event list from server															
-				return (LinkedList<Event>) ois.readObject();
+			System.out.println("I have entered the clientside");
+			ObjectOutputStream oos = new ObjectOutputStream(streamOut); // Send the event list to server
+			oos.writeObject(eventList);															
+			System.out.println("I have sent the object");
+			ObjectInputStream ois = new ObjectInputStream(streamIn); // Receive the event list from server															
+			System.out.println("I have recieved the object");
+			LinkedList<Event> tmp = (LinkedList<Event>)ois.readObject();
+			ois.close();
+			oos.close();
+			streamIn.close();
+			streamOut.close();
+			clientSocket.close();
+			System.out.println("I have closed all streams");
+			return tmp;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

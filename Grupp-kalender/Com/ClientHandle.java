@@ -19,7 +19,7 @@ public class ClientHandle implements Runnable {
 		this.clientSocket = s;
 		this.socketList = socketList;
 		streamIn = new DataInputStream(clientSocket.getInputStream());
-		//streamOut = new DataOutputStream(clientSocket.getOutputStream());
+		streamOut = new DataOutputStream(clientSocket.getOutputStream());
 		aktivitet.start();
 	}
 
@@ -28,44 +28,34 @@ public class ClientHandle implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				ObjectInputStream ois = new ObjectInputStream(streamIn); // Receive
-																			// a
-																			// list
-																			// from
-																			// a
-																			// client
-				LinkedList<Event> eventList = (LinkedList<Event>) ois
-						.readObject();
-				if (eventList == null)
+				ObjectInputStream ois = new ObjectInputStream(streamIn); // Receive a list from the client
+				LinkedList<Event> newEventList = (LinkedList<Event>) ois.readObject();
+				if (newEventList == null)
 					break;
-				for (Socket s : socketList) { // Send it to all of clients which
-					streamOut = new DataOutputStream(s.getOutputStream());							// is connected
+			    for(Event newEvent : newEventList) { //Update the list with new events 
+			        if(!(EventCom.serverEventList.contains(newEvent))){
+			                EventCom.serverEventList.add(newEvent);
+			            }
+			        }
+				System.out.println("3 - I have managed a InputStream and read an object");
+				for (Socket s : socketList) { // Send it to all of clients which is connected					
 					ObjectOutputStream oos = new ObjectOutputStream(streamOut);
-					oos.writeObject(eventList);
+					oos.writeObject(EventCom.serverEventList);
+					System.out.println(" 4- I have written event list to outputStream");
 					oos.close();
+					s.close();
+					
 				}
 				ois.close();
 				streamIn.close();
 				streamOut.close();
+				clientSocket.close();
+				System.out.println("5 - Finish !");
 			} catch (IOException e) {
 				break;
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
-
-	/*
-	 * The private method change one LinkedList<Event> to bytes private byte[]
-	 * serialize(LinkedList<Event> eventList) throws IOException {
-	 * ByteArrayOutputStream out = new ByteArrayOutputStream();
-	 * ObjectOutputStream os = new ObjectOutputStream(out);
-	 * os.writeObject(eventList); return out.toByteArray(); } //The private
-	 * method change bytes to LinkedList<Event> private LinkedList<Event>
-	 * deserialize(byte[] data) throws IOException, ClassNotFoundException {
-	 * ByteArrayInputStream in = new ByteArrayInputStream(data);
-	 * ObjectInputStream is = new ObjectInputStream(in); return
-	 * (LinkedList<Event>) is.readObject(); }
-	 */
 }
