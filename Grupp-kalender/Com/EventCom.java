@@ -14,7 +14,7 @@ import Engine.Event;
  * InAndOut: LinkedList<Event>
  * OBS ! 1-  Port in the server will be 9999
  *       2- Port in clients can be whatever
- *       3- IP address in the server will be 192.168.1.1
+ *       3- IP address in the server will be 192.168.1.*
  *       4- Objects must be serializable 
  *       5- When will be close client and server sockets ? 
  */
@@ -24,14 +24,19 @@ public class EventCom {
 	private ArrayList<Socket> socketList;
 	protected static LinkedList<Event> serverEventList = null; 
 	
-	// Constructors
+	/**
+	 * Constructor
+	 * @param eventList takes in the clients/servers eventList
+	 */
 	public EventCom(LinkedList<Event> eventList) throws IOException, Exception,
 			Throwable {
 		socketList = new ArrayList<Socket>();
 		EventCom.serverEventList = eventList;
 	}
 
-	// Choose between server and client side
+	/**
+	 * Finds out if the computer is a server and client
+	 */
 	public LinkedList<Event> serverOrClient() {
 		try {
 			if (InetAddress.getLocalHost().getHostAddress().equals(serverInetAdr)) // Is this server's socket?
@@ -44,7 +49,9 @@ public class EventCom {
 		return null;
 	}
 
-	// Server side method
+	/**
+	 * ServerSide of communication. Listens to clients and adds the client to a list if it connects.
+	 */
 	private void serverSide() {
 		try {
 			ServerSocket listenerSocket = new ServerSocket(listenerPort); // Make a socket and listen to clients
@@ -64,7 +71,10 @@ public class EventCom {
 
 	}
 
-	// Client side method
+	/**
+	 * Clientside of communication. Makes a connection to the predetermined host/server adress. Makes in- and outstreams
+	 * and sends the eventlist to the server and receives a eventlist from the server. Finally closesall streams.
+	 */
 	@SuppressWarnings("unchecked")
 	public LinkedList<Event> clientSide(LinkedList<Event> eventList) throws ClassNotFoundException {
 		try {
