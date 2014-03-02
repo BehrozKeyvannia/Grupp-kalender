@@ -30,14 +30,15 @@ public class Event implements Comparable<Event>,Serializable{
 	private DateFormat formatter;
 
 	/**
-	 * Create an event by user inputs
+	 * Create an event with parameter values. Formats the yyyy-MM-dd date and HH:mm startTime as a Date object.
 	 * @param userName
 	 * @param title
 	 * @param date
 	 * @param startTime
 	 * @param endTime
 	 * @param description
-	 * @throws ParseException 
+	 * @throws ParseException
+	 * 
 	 */
 	public Event(String userNames, String title, String date, String startTime,
 			String endTime, String description) {
@@ -54,19 +55,26 @@ public class Event implements Comparable<Event>,Serializable{
 		this.endTime = endTime;
 		this.description = description;
 	}
-
+	/**
+	 * Create a String array of the userNames splitted by comma ',' and returns it
+	 */
 	public String[] getListOfUsers() {
 		String[] listOfUsers = userNames.split(",");
 		return listOfUsers;
 	}
+	/**
+	 * Returns the string array provided by 'getListOfUsers' method as a Arraylist
+	 */
 	public java.util.List<String> List(){
 		return Arrays.asList(getListOfUsers());
 	}
-
+	
 	public void setTitle(String newTitle) {
 		title = newTitle;
 	}
-
+	/**
+	 * Formats the String newDate to Date object and sets it to the events date
+	 */
 	public void setDate(String newDate) {
 		formatter =  new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -76,7 +84,9 @@ public class Event implements Comparable<Event>,Serializable{
 		}
 		date=newDate;
 	}
-
+	/**
+	 * Formats the String newStartTime to Date object and sets it to Event date
+	 */
 	public void setStartTime(String newStartTime) {
 		formatter =  new SimpleDateFormat("HH:mm");
 		try {
@@ -122,13 +132,17 @@ public class Event implements Comparable<Event>,Serializable{
 	public String getDescription() {
 		return description;
 	}
-
+	/**
+	 * Returns a String with HTML code for JComponents. /n doesnt work with JComponents. Instead we use <br />
+	 */
 	public String getHTMLString() {
 
 		return "<html> " + startTime + "  " + endTime + "<br /> " + title
 				+ "<br /> " + userNames + "</html>";
 	}
-
+	/**
+	 * Removes the User from userNames
+	 */
 	public void removeUser(String userToRemove) {
 		if(List().contains(userToRemove)){
 			if(List().size()==1)
@@ -139,14 +153,19 @@ public class Event implements Comparable<Event>,Serializable{
 				userNames = userNames.replace(userToRemove + ",", "");
 		}
 	}
-
+	/**
+	 * Adds the user to userNames
+	 */
 	public void addUser(String userToAdd) {
 		if(userNames==null || userNames.equals(""))
 			userNames=userToAdd;
 		else
 			userNames += ("," + userToAdd);
 	}
-
+	
+	/**
+	 * Compares current and parameter Event by Dates. If o is past <0 is returned. If o is equal 0 is returned. If o is future date >0 is returned.
+	 */
 	@Override
 	public int compareTo(Event o) {
 		return getDate2().compareTo(o.getDate2());
@@ -159,6 +178,9 @@ public class Event implements Comparable<Event>,Serializable{
             endTime.hashCode()+
             description.hashCode();
     }
+    /**
+     * Title, date, startTime, endTime and descprition are compared.
+     */
 	@Override
     public boolean equals(Object obj) {
         if (obj == null)
