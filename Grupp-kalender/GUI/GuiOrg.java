@@ -144,6 +144,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private void clear() {
 
 		eventCenter.removeAll();
+		setSize(400,400);
 		pack();
 	}
 
