@@ -99,7 +99,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		menuItemA1 = new JMenuItem("Create new Event");
 		menuItemA1.addActionListener(this);
 
-		menuItemA2 = new JMenuItem("Network!");
+		menuItemA2 = new JMenuItem("Share events!");
 		menuItemA2.addActionListener(this);
 
 		menuItemA3 = new JMenuItem("Remove all past events");
