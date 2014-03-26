@@ -10,7 +10,8 @@ import java.util.Observable;
 import Com.FileHandler;
 
 /**
- * Manage the events
+ * Manages the events and handles every operation that has to do with Event outside of the Event class.
+ * This class creates, finds, saves, sorts, adds, organizes,and removes Events.
  * 
  * @author (Ashor, Akar, Ali och Rami)
  * @version 1
