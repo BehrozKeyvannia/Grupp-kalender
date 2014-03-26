@@ -45,7 +45,11 @@ public class GuiEvent extends JPanel {
 	private EventManager manager;
 
 	/**
-	 * Constructor for the event
+	 * A constructor that Initiate the event and add different settings to the
+	 * components of the event.
+	 * 
+	 * @param hashCode	An ID for the event
+	 * @param manager	the manager object of the engine
 	 */
 	public GuiEvent(int hashCode, EventManager manager) {
 

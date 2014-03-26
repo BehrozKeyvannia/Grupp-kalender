@@ -47,7 +47,11 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private Date date;
 
 	/**
-	 * Construct the whole GUI
+	 * A constructor that create the menu bar of the program and arrange the
+	 * components in the main window.
+	 * 
+	 * @param manager
+	 *            the manager object of the engine
 	 */
 	public GuiOrg(EventManager manager) {
 
@@ -250,6 +254,8 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 
 	/**
 	 * Doing different actions according to what menu item is been chosen
+	 * 
+	 * @param e the action event that is triggered by user. 
 	 */
 	public void actionPerformed(ActionEvent e) {
 
@@ -265,7 +271,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		else if (e.getSource() == menuItemB1)
 			manager.saveEvents();
 	}
-	
+
 	@Override
 	public void update(Observable obs, Object obj) {
 		if (obs == manager) {
