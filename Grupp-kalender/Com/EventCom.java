@@ -17,16 +17,21 @@ import Engine.Event;
  *       3- IP address in the server will be 192.168.1.*
  *       4- Objects must be serializable 
  *       5- When will be close client and server sockets ? 
+ *  Class EventCom: EventCom is the leader of the package Com and decides whether the actual computer gets the role as a server
+ * or client. EventCom contains methods for both server and client. The actual computer that has the same IP adress as the variable "serverInetAdr" is 
+ * gets the role as the server. Otherwise the computer gets the role as a client. Whether the computer is a server or a client, there are "System out print" lines that writes to the 
+ * console what is happening at the moment. 
  */
 public class EventCom {
 	private static int listenerPort = 9999;
-	private static String serverInetAdr = "192.168.1.4";
+	private static String serverInetAdr = "192.168.1.4";  // <----- put The server IP-adress in this variable 
 	private ArrayList<Socket> socketList;
 	protected static LinkedList<Event> serverEventList = null; 
 	
 	/**
 	 * Constructor
 	 * @param eventList takes in the clients/servers eventList
+	 * @throws IOEception
 	 */
 	public EventCom(LinkedList<Event> eventList) throws IOException, Exception,
 			Throwable {
@@ -35,7 +40,7 @@ public class EventCom {
 	}
 
 	/**
-	 * Finds out if the computer is a server and client
+	 * decides if the computer is a server and client. 
 	 */
 	public LinkedList<Event> serverOrClient() {
 		try {
@@ -51,6 +56,8 @@ public class EventCom {
 
 	/**
 	 * ServerSide of communication. Listens to clients and adds the client to a list if it connects.
+	 * Adds all of the client sockets to the socketList and builds a clientHandle class for every specific client. The clientHandle will keep the clients posted. 
+	 * The method is allways waiting for a client to connect. 
 	 */
 	private void serverSide() {
 		try {
@@ -73,7 +80,7 @@ public class EventCom {
 
 	/**
 	 * Clientside of communication. Makes a connection to the predetermined host/server adress. Makes in- and outstreams
-	 * and sends the eventlist to the server and receives a eventlist from the server. Finally closesall streams.
+	 * and sends the eventlist to the server and receives a eventlist from the server. Finally closes all streams.
 	 */
 	@SuppressWarnings("unchecked")
 	public LinkedList<Event> clientSide(LinkedList<Event> eventList) throws ClassNotFoundException {
