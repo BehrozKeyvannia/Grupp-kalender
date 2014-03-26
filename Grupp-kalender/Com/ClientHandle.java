@@ -7,6 +7,13 @@ import java.util.LinkedList;
 
 import Engine.Event;
 
+	/**
+	 * ClientHandle - a class that is used by EventCom to make a profile for every client that connects to the server. 
+	 * This class is build to every client and is keeping them updated on which events that is on the eventlist that is shared with all of the clients.
+	 * 
+	 * 
+	 * 
+	 */
 public class ClientHandle implements Runnable {
 	public Thread aktivitet = new Thread(this);
 	Socket clientSocket;
@@ -15,7 +22,8 @@ public class ClientHandle implements Runnable {
 	private ArrayList<Socket> socketList;
 	
 	/**
-	 * Constructor.
+	 * Constructor takes the socket of the client and a socketlist as parameters and the socketlist is a list of all of the sockets which are active.
+	 * This is used to update every socket that is in the list which gives the result that every client can see one common eventlist.
 	 * @param s the clients socket to recieve from.
 	 * @param socketlist clientlist of sockets to send to.
 	 */
