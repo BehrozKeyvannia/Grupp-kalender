@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 /**
- * Create an event and its' contends.
+ * Represents a singular event and contains info of the event and the users attending the event.
  * 
  * @author (Ashor, Akar, Ali och Rami)
  * @version 1
