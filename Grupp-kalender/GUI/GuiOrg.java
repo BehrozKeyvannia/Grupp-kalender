@@ -11,16 +11,16 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Observer;
 import java.util.Observable;
-
 import javax.swing.*;
-
 import Com.EventCom;
 import Engine.*;
 
-// import Engine.Event;
-// import Engine.EventManager;
-
 /**
+ * This class creates a menu bar for the main program window and all the needed
+ * menu items. It make it possible to enter all the needed data for the new
+ * created events. It also shows the new created events visually. Lastly it adds
+ * all the needed action listeners where needed and make it possible to interact
+ * with them.
  * 
  * @author Ashor, Rami
  * 
@@ -39,7 +39,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private JMenuItem menuItemA3;
 	private JMenuItem menuItemA4;
 	private JMenuItem menuItemB1;
-	private EventCom  com;
+	private EventCom com;
 
 	// For the eventCenter container
 	private BoxLayout box = new BoxLayout(eventCenter, BoxLayout.Y_AXIS);
@@ -50,7 +50,6 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	 * Construct the whole GUI
 	 */
 	public GuiOrg(EventManager manager) {
-
 
 		this.manager = manager;
 		try {
@@ -82,10 +81,10 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		border.addLayoutComponent(eventCenter, BorderLayout.CENTER);
 
 		setVisible(true);
-		setPreferredSize(new Dimension(500,500));
+		setPreferredSize(new Dimension(500, 500));
 		pack();
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		update(manager,null);
+		update(manager, null);
 	}
 
 	/**
@@ -104,7 +103,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 
 		menuItemA3 = new JMenuItem("Remove all past events");
 		menuItemA3.addActionListener(this);
-		
+
 		menuItemA4 = new JMenuItem("Remove all events");
 		menuItemA4.addActionListener(this);
 
@@ -144,7 +143,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	private void clear() {
 
 		eventCenter.removeAll();
-		setSize(400,400);
+		setSize(400, 400);
 		pack();
 	}
 
@@ -157,11 +156,10 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 	public void createEventsIterator(Iterator<Event> eventIterator) {
 		while (eventIterator.hasNext()) {
 			Event temp = eventIterator.next();
-			if(date.compareTo(temp.getDate2())<0)
+			if (date.compareTo(temp.getDate2()) < 0)
 				addNewEvent(new GuiEvent(temp.hashCode(), manager));
 		}
 	}
-
 
 	/**
 	 * Create an input row to get the new event information from the user
@@ -213,10 +211,11 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 							"Please enter what is needed",
 							JOptionPane.OK_CANCEL_OPTION);
 
-			if (result == JOptionPane.OK_OPTION){
+			if (result == JOptionPane.OK_OPTION) {
 				// Check that user name is entered
 				if (userField.getText().equals(""))
-					JOptionPane.showMessageDialog(null, "Please enter a user name");
+					JOptionPane.showMessageDialog(null,
+							"Please enter a user name");
 
 				// Check for date format input is correct entered
 				else if (!dateField.getText().matches(
@@ -226,8 +225,9 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 
 				// Check to see that time format is correct
 				else if (!startField.getText().matches(
-						("(\\d{2}+)(:{1}+)(\\d{2}+)")) || !endField
-						.getText().matches(("(\\d{2}+)(:{1}+)(\\d{2}+)")))
+						("(\\d{2}+)(:{1}+)(\\d{2}+)"))
+						|| !endField.getText().matches(
+								("(\\d{2}+)(:{1}+)(\\d{2}+)")))
 					JOptionPane.showMessageDialog(null,
 							"Please enter time as hh-mm format");
 				else {
@@ -244,7 +244,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 				break;
 			else
 				break;
-			
+
 		}
 	}
 
@@ -265,7 +265,7 @@ public class GuiOrg extends JFrame implements ActionListener, Observer {
 		else if (e.getSource() == menuItemB1)
 			manager.saveEvents();
 	}
-
+	
 	@Override
 	public void update(Observable obs, Object obj) {
 		if (obs == manager) {

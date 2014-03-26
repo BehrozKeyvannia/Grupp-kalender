@@ -2,20 +2,19 @@ package GUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
-
 import Engine.EventManager;
 
 /**
- * Create a new event item
+ * Create a new visual event item on the screen. This class also organize all
+ * the contents in the event by adding the appropriate layout. The class add
+ * action listeners where needed and responds to their actions.
  * 
  * @author Ashor, Rami
  * 
@@ -50,7 +49,6 @@ public class GuiEvent extends JPanel {
 	 */
 	public GuiEvent(int hashCode, EventManager manager) {
 
-		
 		setLayout(border);
 
 		this.manager = manager;
@@ -103,57 +101,58 @@ public class GuiEvent extends JPanel {
 	}
 
 	/**
-	 * Add action listener to all buttons.
-	 * joined.
+	 * Add action listener to all buttons in the event.
 	 */
 	private void AddListenerToAll() {
 		joinSouth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JTextField userName = new JTextField();
-					while (true) {
-						int ok = JOptionPane.showConfirmDialog(null, userName,
-								"Please enter your userName",
-								JOptionPane.OK_CANCEL_OPTION);
+				JTextField userName = new JTextField();
+				while (true) {
+					int ok = JOptionPane.showConfirmDialog(null, userName,
+							"Please enter your userName",
+							JOptionPane.OK_CANCEL_OPTION);
 
-						if (ok == JOptionPane.CANCEL_OPTION)
-							break;
+					if (ok == JOptionPane.CANCEL_OPTION)
+						break;
 
-						else if (ok == JOptionPane.OK_OPTION
-								&& !userName.getText().equals("")) {
+					else if (ok == JOptionPane.OK_OPTION
+							&& !userName.getText().equals("")) {
 
-							// Get the event and add the user to the event
-							manager.getEventByID(hashCode).addUser(userName
-									.getText());
+						// Get the event and add the user to the event
+						manager.getEventByID(hashCode).addUser(
+								userName.getText());
 
-							// Get how many users are joined
-							joinedSouth.setText(manager.getEventByID(hashCode).getUserNames());
-							break;
+						// Get how many users are joined
+						joinedSouth.setText(manager.getEventByID(hashCode)
+								.getUserNames());
+						break;
 					}
 				}
 			}
 		});
-		
+
 		leaveSouth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JTextField userName = new JTextField();
-					while (true) {
-						int ok = JOptionPane.showConfirmDialog(null, userName,
-								"Please enter the user you want to remove",
-								JOptionPane.OK_CANCEL_OPTION);
+				JTextField userName = new JTextField();
+				while (true) {
+					int ok = JOptionPane.showConfirmDialog(null, userName,
+							"Please enter the user you want to remove",
+							JOptionPane.OK_CANCEL_OPTION);
 
-						if (ok == JOptionPane.CANCEL_OPTION)
-							break;
+					if (ok == JOptionPane.CANCEL_OPTION)
+						break;
 
-						else if (ok == JOptionPane.OK_OPTION
-								&& !userName.getText().equals("")) {
+					else if (ok == JOptionPane.OK_OPTION
+							&& !userName.getText().equals("")) {
 
-							// Get the event and add the user to the event
-							manager.getEventByID(hashCode).removeUser(userName
-									.getText());
+						// Get the event and add the user to the event
+						manager.getEventByID(hashCode).removeUser(
+								userName.getText());
 
-							// Get how many users are joined
-							joinedSouth.setText(manager.getEventByID(hashCode).getUserNames());
-							break;
+						// Get how many users are joined
+						joinedSouth.setText(manager.getEventByID(hashCode)
+								.getUserNames());
+						break;
 					}
 				}
 			}
@@ -162,8 +161,8 @@ public class GuiEvent extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == deleteSouth) {
 					manager.removeEvent(hashCode);
+				}
 			}
-		}
 		});
 	}
 }
